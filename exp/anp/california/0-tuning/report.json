@@ -1,0 +1,142 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.anp.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "num_accumulate": 1,
+            "eval_batch_size": 16384,
+            "eval_batch_size_context": 10000000,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/california",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_hidden": [
+                    "_tune_",
+                    "int",
+                    96,
+                    384
+                ],
+                "num_layers_dec": [
+                    "_tune_",
+                    "int",
+                    1,
+                    3
+                ],
+                "num_self_attention_l": [
+                    "_tune_",
+                    "int",
+                    1,
+                    2
+                ],
+                "num_cross_attention_l": [
+                    "_tune_",
+                    "int",
+                    1,
+                    2
+                ]
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    3e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.anp.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "num_accumulate": 1,
+            "eval_batch_size": 16384,
+            "eval_batch_size_context": 10000000,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/california",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_hidden": 364,
+                "num_layers_dec": 1,
+                "num_self_attention_l": 2,
+                "num_cross_attention_l": 2
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.0006523657206956646,
+                "weight_decay": 0.0
+            }
+        },
+        "n_parameters": 5592862,
+        "prediction_type": null,
+        "best_epoch": 97,
+        "metrics": {
+            "train": {
+                "rmse": 0.38098745585826627,
+                "mae": 0.2466640961697184,
+                "r2": 0.8922385349090908,
+                "score": -0.38098745585826627
+            },
+            "val": {
+                "rmse": 0.46186264865299864,
+                "mae": 0.29666040865893706,
+                "r2": 0.8363969276438459,
+                "score": -0.46186264865299864
+            },
+            "test": {
+                "rmse": 0.46380552516229057,
+                "mae": 0.30332982573284184,
+                "r2": 0.8350283640350786,
+                "score": -0.46380552516229057
+            }
+        },
+        "time": "0:40:04",
+        "chunk_size": null,
+        "eval_batch_size": 16384,
+        "trial_id": 49,
+        "tuning_time": "22:52:29"
+    },
+    "time": "1 day, 18:35:33",
+    "n_completed_trials": 100,
+    "continuations": [
+        57,
+        75
+    ]
+}

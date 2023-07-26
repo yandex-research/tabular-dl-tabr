@@ -1,0 +1,129 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.dkl.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "kernel": [
+                "_tune_",
+                "categorical",
+                [
+                    "rbf",
+                    "sm"
+                ]
+            ],
+            "lr": [
+                "_tune_",
+                "loguniform",
+                1e-05,
+                0.01
+            ],
+            "weight_decay": [
+                "_tune_",
+                "?loguniform",
+                0.0,
+                1e-06,
+                0.001
+            ],
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/black-friday",
+                "num_policy": "quantile",
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "mlp": {
+                "n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    4
+                ],
+                "d_layer": [
+                    "_tune_",
+                    "int",
+                    64,
+                    768
+                ],
+                "dropout": [
+                    "_tune_",
+                    "?uniform",
+                    0.0,
+                    0.0,
+                    0.5
+                ],
+                "activation": "ReLU"
+            }
+        }
+    },
+    "best": {
+        "function": "bin.dkl.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "kernel": "rbf",
+            "lr": 0.0022783205356887823,
+            "weight_decay": 2.9692063292895034e-05,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/black-friday",
+                "num_policy": "quantile",
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "mlp": {
+                "n_blocks": 4,
+                "d_layer": 526,
+                "dropout": 0.20870145315185062,
+                "activation": "ReLU"
+            }
+        },
+        "prediction_type": null,
+        "best_epoch": 209,
+        "metrics": {
+            "train": {
+                "rmse": 0.6777092475061324,
+                "mae": 0.5252770288264876,
+                "r2": 0.5399315076172964,
+                "score": -0.6777092475061324
+            },
+            "val": {
+                "rmse": 0.6962592784299761,
+                "mae": 0.5386355315571858,
+                "r2": 0.5138428435393463,
+                "score": -0.6962592784299761
+            },
+            "test": {
+                "rmse": 0.6966741831730815,
+                "mae": 0.5402541886272532,
+                "r2": 0.5183098602725745,
+                "score": -0.6966741831730815
+            }
+        },
+        "time": "1:02:52",
+        "trial_id": 16,
+        "tuning_time": "18:39:28"
+    },
+    "time": "4 days, 19:04:49",
+    "n_completed_trials": 100,
+    "continuations": [
+        20,
+        21,
+        22
+    ]
+}

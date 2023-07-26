@@ -1,0 +1,30 @@
+# NOTE: the hyperparameters here are EXTREMELY suboptimal,
+# this config is used only for testing the environment.
+
+seed = 0
+batch_size = 256
+patience = 16
+n_epochs = inf
+
+[data]
+seed = 0
+cache = true
+path = ":data/california"
+num_policy = "quantile"
+cat_policy = "__null__"
+y_policy = "standard"
+
+[model]
+num_embeddings = "__null__"
+
+[model.backbone]
+type = "MLP"
+n_blocks = 1
+d_layer = 64
+dropout = 0.0
+activation = "ReLU"
+
+[optimizer]
+type = "AdamW"
+lr = 0.001
+weight_decay = 0.0

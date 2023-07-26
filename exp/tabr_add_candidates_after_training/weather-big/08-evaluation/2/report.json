@@ -1,0 +1,118 @@
+{
+    "function": "bin.tabr_add_candidates_after_training.main",
+    "gpus": [
+        "NVIDIA A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 2,
+        "batch_size": 1024,
+        "patience": 16,
+        "n_epochs": Infinity,
+        "context_size": 96,
+        "train_subset_pct": 0.08,
+        "data": {
+            "seed": 0,
+            "cache": true,
+            "path": ":data/weather-big",
+            "num_policy": "quantile",
+            "cat_policy": null,
+            "y_policy": "standard"
+        },
+        "model": {
+            "num_embeddings": null,
+            "d_main": 265,
+            "context_dropout": 0.38920071545944357,
+            "d_multiplier": 2.0,
+            "encoder_n_blocks": 0,
+            "predictor_n_blocks": 1,
+            "mixer_normalization": "auto",
+            "dropout0": 0.38852797479169876,
+            "dropout1": 0.0,
+            "normalization": "LayerNorm",
+            "activation": "ReLU"
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 0.0003121273641315169,
+            "weight_decay": 1.2260352006404615e-06
+        }
+    },
+    "n_parameters": 667271,
+    "prediction_type": null,
+    "best_epoch": 43,
+    "time": "1:10:45",
+    "chunk_size": null,
+    "eval_batch_size": 32768,
+    "metrics": {
+        "0.08": {
+            "test": {
+                "rmse": 1.7957722442729962,
+                "mae": 1.316527311444574,
+                "r2": 0.9694418654464412,
+                "score": -1.7957722442729962
+            },
+            "val": {
+                "rmse": 1.7858997120747568,
+                "mae": 1.309612729463609,
+                "r2": 0.9697366968047751,
+                "score": -1.7858997120747568
+            }
+        },
+        "0.16": {
+            "test": {
+                "rmse": 1.735153668881797,
+                "mae": 1.2703760836503903,
+                "r2": 0.9714700989837987,
+                "score": -1.735153668881797
+            },
+            "val": {
+                "rmse": 1.727153485237275,
+                "mae": 1.2645850867802295,
+                "r2": 0.971694938337017,
+                "score": -1.727153485237275
+            }
+        },
+        "0.32": {
+            "test": {
+                "rmse": 1.6698113545192086,
+                "mae": 1.221102297043977,
+                "r2": 0.9735783989538443,
+                "score": -1.6698113545192086
+            },
+            "val": {
+                "rmse": 1.6663430135964359,
+                "mae": 1.218900155996657,
+                "r2": 0.9736530070747396,
+                "score": -1.6663430135964359
+            }
+        },
+        "0.64": {
+            "test": {
+                "rmse": 1.6003324154029173,
+                "mae": 1.1698871250678806,
+                "r2": 0.9757313977451395,
+                "score": -1.6003324154029173
+            },
+            "val": {
+                "rmse": 1.5953312129331108,
+                "mae": 1.1674959074366882,
+                "r2": 0.9758507341807178,
+                "score": -1.5953312129331108
+            }
+        },
+        "1.0": {
+            "test": {
+                "rmse": 1.553331685145669,
+                "mae": 1.135492264194042,
+                "r2": 0.9771359730879486,
+                "score": -1.553331685145669
+            },
+            "val": {
+                "rmse": 1.5492413367057054,
+                "mae": 1.1328086632508914,
+                "r2": 0.9772259436508915,
+                "score": -1.5492413367057054
+            }
+        }
+    }
+}

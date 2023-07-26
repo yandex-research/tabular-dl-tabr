@@ -1,0 +1,172 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.tabr_design.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 512,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/black-friday",
+                "num_policy": "quantile",
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": [
+                    "_tune_",
+                    "int",
+                    96,
+                    384
+                ],
+                "context_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU",
+                "dot_product": false,
+                "use_Q": false,
+                "use_V": true,
+                "use_labels": false,
+                "use_T": false,
+                "self_attention": true,
+                "scale_similarities": true
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    3e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.tabr_design.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 512,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/black-friday",
+                "num_policy": "quantile",
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": 165,
+                "context_dropout": 0.18720859280032076,
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": 0.48077848468221374,
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU",
+                "dot_product": false,
+                "use_Q": false,
+                "use_V": true,
+                "use_labels": false,
+                "use_T": false,
+                "self_attention": true,
+                "scale_similarities": true
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.00013170277468199662,
+                "weight_decay": 0.0
+            }
+        },
+        "n_parameters": 168796,
+        "prediction_type": null,
+        "best_epoch": 149,
+        "metrics": {
+            "train": {
+                "rmse": 0.6762470353852252,
+                "mae": 0.5258485625771636,
+                "r2": 0.5419146353589526,
+                "score": -0.6762470353852252
+            },
+            "val": {
+                "rmse": 0.695822866189714,
+                "mae": 0.5404333405072481,
+                "r2": 0.5144520948579846,
+                "score": -0.695822866189714
+            },
+            "test": {
+                "rmse": 0.6971866202105999,
+                "mae": 0.5426998971946745,
+                "r2": 0.5176009875916702,
+                "score": -0.6971866202105999
+            }
+        },
+        "time": "0:08:18",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 67,
+        "tuning_time": "9:31:27"
+    },
+    "time": "14:33:41",
+    "n_completed_trials": 100,
+    "continuations": [
+        1,
+        9,
+        10,
+        11,
+        19,
+        35,
+        58,
+        59,
+        64,
+        66,
+        73,
+        74,
+        75,
+        76,
+        84
+    ]
+}

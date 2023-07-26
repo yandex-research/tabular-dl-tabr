@@ -1,0 +1,71 @@
+{
+    "function": "bin.tabr.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 4,
+        "batch_size": 256,
+        "patience": 16,
+        "n_epochs": Infinity,
+        "context_size": 96,
+        "data": {
+            "seed": 0,
+            "cache": true,
+            "path": ":data/regression-cat-large-0-nyc-taxi-green-dec-2016",
+            "num_policy": "quantile",
+            "cat_policy": "ordinal",
+            "y_policy": "standard"
+        },
+        "model": {
+            "d_main": 21,
+            "context_dropout": 0.4449369985219112,
+            "d_multiplier": 2.0,
+            "encoder_n_blocks": 1,
+            "predictor_n_blocks": 2,
+            "mixer_normalization": "auto",
+            "dropout0": 0.20500229686765326,
+            "dropout1": 0.0,
+            "normalization": "LayerNorm",
+            "activation": "ReLU",
+            "num_embeddings": {
+                "type": "PLREmbeddings",
+                "n_frequencies": 68,
+                "frequency_scale": 1.998246815977607,
+                "d_embedding": 35,
+                "lite": true
+            }
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 0.0007445905990475656,
+            "weight_decay": 7.994180492898939e-05
+        }
+    },
+    "n_parameters": 20360,
+    "prediction_type": null,
+    "best_epoch": 24,
+    "metrics": {
+        "train": {
+            "rmse": 0.3205557128253732,
+            "mae": 0.18739229226232013,
+            "r2": 0.7101304818507038,
+            "score": -0.3205557128253732
+        },
+        "val": {
+            "rmse": 0.3563917323932417,
+            "mae": 0.20381145003261025,
+            "r2": 0.6447128133422233,
+            "score": -0.3563917323932417
+        },
+        "test": {
+            "rmse": 0.3578815897727022,
+            "mae": 0.20376868691115746,
+            "r2": 0.6403066976141107,
+            "score": -0.3578815897727022
+        }
+    },
+    "time": "0:02:18",
+    "chunk_size": null,
+    "eval_batch_size": 32768
+}

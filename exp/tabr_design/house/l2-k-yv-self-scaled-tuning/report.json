@@ -1,0 +1,155 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.tabr_design.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/house",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": [
+                    "_tune_",
+                    "int",
+                    96,
+                    384
+                ],
+                "context_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU",
+                "dot_product": false,
+                "use_Q": false,
+                "use_V": true,
+                "use_labels": true,
+                "use_T": false,
+                "self_attention": true,
+                "scale_similarities": true
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    3e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.tabr_design.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/house",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": 362,
+                "context_dropout": 0.5860586612950324,
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": 0.3526505788990817,
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU",
+                "dot_product": false,
+                "use_Q": false,
+                "use_V": true,
+                "use_labels": true,
+                "use_T": false,
+                "self_attention": true,
+                "scale_similarities": true
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 5.4715128600562417e-05,
+                "weight_decay": 0.0
+            }
+        },
+        "n_parameters": 797125,
+        "prediction_type": null,
+        "best_epoch": 99,
+        "metrics": {
+            "train": {
+                "rmse": 21062.79104306858,
+                "mae": 11812.570856629463,
+                "r2": 0.8366281858274061,
+                "score": -21062.79104306858
+            },
+            "val": {
+                "rmse": 28400.846509872095,
+                "mae": 14534.600130348583,
+                "r2": 0.7293244120341389,
+                "score": -28400.846509872095
+            },
+            "test": {
+                "rmse": 31403.169824527416,
+                "mae": 15174.483712919056,
+                "r2": 0.6584024062762404,
+                "score": -31403.169824527416
+            }
+        },
+        "time": "0:01:07",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 77,
+        "tuning_time": "1:21:01"
+    },
+    "time": "1:50:30",
+    "n_completed_trials": 100
+}

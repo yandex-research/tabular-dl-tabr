@@ -1,0 +1,64 @@
+{
+    "function": "bin.ffn.main",
+    "gpus": [
+        "A100-SXM4-40GB"
+    ],
+    "config": {
+        "seed": 11,
+        "batch_size": 512,
+        "patience": 16,
+        "n_epochs": Infinity,
+        "data": {
+            "seed": 0,
+            "cache": true,
+            "path": ":data/black-friday",
+            "num_policy": "quantile",
+            "cat_policy": "ordinal",
+            "y_policy": "standard"
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 0.00024410707005196336,
+            "weight_decay": 4.583350282222566e-05
+        },
+        "model": {
+            "backbone": {
+                "type": "MLP",
+                "n_blocks": 1,
+                "d_layer": 682,
+                "dropout": 0.21828109181548433,
+                "activation": "ReLU"
+            },
+            "num_embeddings": {
+                "type": "LREmbeddings",
+                "d_embedding": 80
+            }
+        }
+    },
+    "n_parameters": 232521,
+    "prediction_type": null,
+    "best_epoch": 174,
+    "metrics": {
+        "train": {
+            "rmse": 0.6726307021387025,
+            "mae": 0.5231268413478849,
+            "r2": 0.5468008967885949,
+            "score": -0.6726307021387025
+        },
+        "val": {
+            "rmse": 0.6904456084200071,
+            "mae": 0.5367764991162909,
+            "r2": 0.5219276404503328,
+            "score": -0.6904456084200071
+        },
+        "test": {
+            "rmse": 0.6908539804989473,
+            "mae": 0.537895111038052,
+            "r2": 0.5263245781102937,
+            "score": -0.6908539804989473
+        }
+    },
+    "time": "0:01:20",
+    "chunk_size": null,
+    "eval_batch_size": 32768
+}

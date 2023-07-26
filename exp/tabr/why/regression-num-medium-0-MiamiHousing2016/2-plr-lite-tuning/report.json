@@ -1,0 +1,178 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.tabr.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-num-medium-0-MiamiHousing2016",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "d_main": [
+                    "_tune_",
+                    "int",
+                    16,
+                    384
+                ],
+                "context_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": [
+                    "_tune_",
+                    "int",
+                    0,
+                    1
+                ],
+                "predictor_n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    2
+                ],
+                "mixer_normalization": "auto",
+                "dropout0": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU",
+                "num_embeddings": {
+                    "type": "PLREmbeddings",
+                    "n_frequencies": [
+                        "_tune_",
+                        "int",
+                        8,
+                        96
+                    ],
+                    "frequency_scale": [
+                        "_tune_",
+                        "loguniform",
+                        0.01,
+                        100.0
+                    ],
+                    "d_embedding": [
+                        "_tune_",
+                        "int",
+                        4,
+                        64
+                    ],
+                    "lite": true
+                }
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    3e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.tabr.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-num-medium-0-MiamiHousing2016",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "d_main": 336,
+                "context_dropout": 0.03478013940933222,
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": 0.04708712154580727,
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU",
+                "num_embeddings": {
+                    "type": "PLREmbeddings",
+                    "n_frequencies": 80,
+                    "frequency_scale": 0.02341412378871274,
+                    "d_embedding": 26,
+                    "lite": true
+                }
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.00029109773937610356,
+                "weight_decay": 6.626687818702568e-05
+            }
+        },
+        "n_parameters": 1139563,
+        "prediction_type": null,
+        "best_epoch": 31,
+        "metrics": {
+            "train": {
+                "rmse": 0.12705998421573814,
+                "mae": 0.08863635703901362,
+                "r2": 0.9499257079624742,
+                "score": -0.12705998421573814
+            },
+            "val": {
+                "rmse": 0.13119076445467093,
+                "mae": 0.09366267960750907,
+                "r2": 0.9464224894893885,
+                "score": -0.13119076445467093
+            },
+            "test": {
+                "rmse": 0.13703573789635745,
+                "mae": 0.0956670050323849,
+                "r2": 0.9418038674645928,
+                "score": -0.13703573789635745
+            }
+        },
+        "time": "0:00:30",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 43,
+        "tuning_time": "0:22:48"
+    },
+    "time": "0:50:23",
+    "n_completed_trials": 100
+}

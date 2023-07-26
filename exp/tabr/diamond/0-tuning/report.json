@@ -1,0 +1,144 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.tabr.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 512,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/diamond",
+                "num_policy": "quantile",
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": [
+                    "_tune_",
+                    "int",
+                    96,
+                    384
+                ],
+                "context_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    3e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.tabr.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 512,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/diamond",
+                "num_policy": "quantile",
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": 237,
+                "context_dropout": 0.5266121600159294,
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": 0.35669540760992297,
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.00017282232958549113,
+                "weight_decay": 5.1720678496903434e-06
+            }
+        },
+        "n_parameters": 515002,
+        "prediction_type": null,
+        "best_epoch": 101,
+        "metrics": {
+            "train": {
+                "rmse": 0.12230469131746814,
+                "mae": 0.06493636536360468,
+                "r2": 0.9849709377346623,
+                "score": -0.12230469131746814
+            },
+            "val": {
+                "rmse": 0.1269214086960876,
+                "mae": 0.06727437611077479,
+                "r2": 0.9842642652144055,
+                "score": -0.1269214086960876
+            },
+            "test": {
+                "rmse": 0.13220737735044705,
+                "mae": 0.06725001377890162,
+                "r2": 0.9824510215295371,
+                "score": -0.13220737735044705
+            }
+        },
+        "time": "0:02:07",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 47,
+        "tuning_time": "1:13:23"
+    },
+    "time": "2:50:30",
+    "n_completed_trials": 100,
+    "continuations": [
+        7
+    ]
+}

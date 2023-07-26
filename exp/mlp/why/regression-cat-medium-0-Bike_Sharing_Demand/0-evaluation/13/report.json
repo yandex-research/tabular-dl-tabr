@@ -1,0 +1,61 @@
+{
+    "function": "bin.ffn.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 13,
+        "batch_size": 256,
+        "patience": 16,
+        "n_epochs": Infinity,
+        "data": {
+            "seed": 0,
+            "cache": true,
+            "path": ":data/regression-cat-medium-0-Bike_Sharing_Demand",
+            "num_policy": "quantile",
+            "cat_policy": "ordinal",
+            "y_policy": "standard"
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 0.000999846423029019,
+            "weight_decay": 9.150738703231001e-05
+        },
+        "model": {
+            "num_embeddings": null,
+            "backbone": {
+                "type": "MLP",
+                "n_blocks": 5,
+                "d_layer": 303,
+                "dropout": 0.0,
+                "activation": "ReLU"
+            }
+        }
+    },
+    "n_parameters": 374206,
+    "prediction_type": null,
+    "best_epoch": 36,
+    "metrics": {
+        "train": {
+            "rmse": 32.42260414006682,
+            "mae": 23.820995621820202,
+            "r2": 0.9679572569256282,
+            "score": -32.42260414006682
+        },
+        "val": {
+            "rmse": 47.690850276620296,
+            "mae": 32.04981926458686,
+            "r2": 0.9294159408084495,
+            "score": -47.690850276620296
+        },
+        "test": {
+            "rmse": 46.61002726357511,
+            "mae": 31.630156923969935,
+            "r2": 0.9348813749009812,
+            "score": -46.61002726357511
+        }
+    },
+    "time": "0:00:06",
+    "chunk_size": null,
+    "eval_batch_size": 32768
+}

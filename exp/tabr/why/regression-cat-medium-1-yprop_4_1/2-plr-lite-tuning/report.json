@@ -1,0 +1,178 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.tabr.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 128,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-1-yprop_4_1",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "d_main": [
+                    "_tune_",
+                    "int",
+                    16,
+                    384
+                ],
+                "context_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": [
+                    "_tune_",
+                    "int",
+                    0,
+                    1
+                ],
+                "predictor_n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    2
+                ],
+                "mixer_normalization": "auto",
+                "dropout0": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU",
+                "num_embeddings": {
+                    "type": "PLREmbeddings",
+                    "n_frequencies": [
+                        "_tune_",
+                        "int",
+                        8,
+                        96
+                    ],
+                    "frequency_scale": [
+                        "_tune_",
+                        "loguniform",
+                        0.01,
+                        100.0
+                    ],
+                    "d_embedding": [
+                        "_tune_",
+                        "int",
+                        4,
+                        64
+                    ],
+                    "lite": true
+                }
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    3e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.tabr.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 128,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-1-yprop_4_1",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "d_main": 251,
+                "context_dropout": 0.2621046001617265,
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 1,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": 0.16413929386352336,
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU",
+                "num_embeddings": {
+                    "type": "PLREmbeddings",
+                    "n_frequencies": 9,
+                    "frequency_scale": 0.07201861344303602,
+                    "d_embedding": 50,
+                    "lite": true
+                }
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 3.712010231137055e-05,
+                "weight_decay": 0.0
+            }
+        },
+        "n_parameters": 1357231,
+        "prediction_type": null,
+        "best_epoch": 5,
+        "metrics": {
+            "train": {
+                "rmse": 0.02750365419235371,
+                "mae": 0.018549580276538635,
+                "r2": 0.17010636376950194,
+                "score": -0.02750365419235371
+            },
+            "val": {
+                "rmse": 0.027307130849326462,
+                "mae": 0.019854412903304586,
+                "r2": 0.11326204620078362,
+                "score": -0.027307130849326462
+            },
+            "test": {
+                "rmse": 0.027504213215918477,
+                "mae": 0.020235492354907847,
+                "r2": 0.0728301039106869,
+                "score": -0.027504213215918477
+            }
+        },
+        "time": "0:00:15",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 87,
+        "tuning_time": "0:23:28"
+    },
+    "time": "0:26:38",
+    "n_completed_trials": 100
+}

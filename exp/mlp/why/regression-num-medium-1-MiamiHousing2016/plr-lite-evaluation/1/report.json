@@ -1,0 +1,93 @@
+{
+    "function": "bin.ffn.main",
+    "environment": {
+        "CUDA_VISIBLE_DEVICES": "1",
+        "gpus": {
+            "driver": "460.80",
+            "devices": [
+                {
+                    "name": "GeForce RTX 2080 Ti",
+                    "memory_total": 11554717696,
+                    "memory_free": 1555496960,
+                    "memory_used": 9999220736,
+                    "utilization": 93
+                },
+                {
+                    "name": "GeForce RTX 2080 Ti",
+                    "memory_total": 11552096256,
+                    "memory_free": 9522053120,
+                    "memory_used": 2030043136,
+                    "utilization": 45
+                }
+            ]
+        },
+        "torch.version.cuda": "11.1",
+        "torch.backends.cudnn.version()": 8005,
+        "torch.cuda.nccl.version()": [
+            2,
+            10,
+            3
+        ]
+    },
+    "config": {
+        "seed": 1,
+        "batch_size": 128,
+        "patience": 16,
+        "n_epochs": Infinity,
+        "data": {
+            "seed": 0,
+            "cache": true,
+            "path": ":data/regression-num-medium-1-MiamiHousing2016",
+            "num_policy": "quantile",
+            "cat_policy": null,
+            "y_policy": "standard"
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 1.7061173319934944e-05,
+            "weight_decay": 0.0
+        },
+        "model": {
+            "backbone": {
+                "type": "MLP",
+                "n_blocks": 4,
+                "d_layer": 865,
+                "dropout": 0.07239922080358555,
+                "activation": "ReLU"
+            },
+            "num_embeddings": {
+                "type": "PLREmbeddings",
+                "n_frequencies": 89,
+                "frequency_scale": 0.022365303448626497,
+                "d_embedding": 47,
+                "lite": true
+            }
+        }
+    },
+    "n_parameters": 2787086,
+    "prediction_type": null,
+    "best_epoch": 130,
+    "metrics": {
+        "train": {
+            "rmse": 0.1352161249653579,
+            "mae": 0.09538956687525335,
+            "r2": 0.9438656224212879,
+            "score": -0.1352161249653579
+        },
+        "val": {
+            "rmse": 0.14371894868227694,
+            "mae": 0.09874256558733396,
+            "r2": 0.9304690874589913,
+            "score": -0.14371894868227694
+        },
+        "test": {
+            "rmse": 0.15347541298790388,
+            "mae": 0.10497382380636378,
+            "r2": 0.9268441000602416,
+            "score": -0.15347541298790388
+        }
+    },
+    "time": "0:00:32",
+    "chunk_size": null,
+    "eval_batch_size": 32768
+}

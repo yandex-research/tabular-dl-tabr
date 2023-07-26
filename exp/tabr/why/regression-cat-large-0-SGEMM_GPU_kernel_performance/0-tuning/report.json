@@ -1,0 +1,144 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.tabr.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-large-0-SGEMM_GPU_kernel_performance",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": [
+                    "_tune_",
+                    "int",
+                    16,
+                    384
+                ],
+                "context_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    3e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.tabr.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-large-0-SGEMM_GPU_kernel_performance",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": 210,
+                "context_dropout": 0.1148333559456863,
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": 0.3077527109259644,
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.0002964668900282915,
+                "weight_decay": 1.3720237355800878e-05
+            }
+        },
+        "n_parameters": 401731,
+        "prediction_type": null,
+        "best_epoch": 139,
+        "metrics": {
+            "train": {
+                "rmse": 0.015585167116332021,
+                "mae": 0.008747800579709475,
+                "r2": 0.9998063502652376,
+                "score": -0.015585167116332021
+            },
+            "val": {
+                "rmse": 0.015758976550150537,
+                "mae": 0.00891954058045119,
+                "r2": 0.999803219320803,
+                "score": -0.015758976550150537
+            },
+            "test": {
+                "rmse": 0.01602165740942936,
+                "mae": 0.008876127995942173,
+                "r2": 0.9997928212987387,
+                "score": -0.01602165740942936
+            }
+        },
+        "time": "0:06:46",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 18,
+        "tuning_time": "1:35:13"
+    },
+    "time": "8:10:33",
+    "n_completed_trials": 100,
+    "continuations": [
+        89
+    ]
+}

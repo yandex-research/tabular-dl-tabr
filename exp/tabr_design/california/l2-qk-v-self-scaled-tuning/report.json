@@ -1,0 +1,155 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "GeForce RTX 2080 Ti"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.tabr_design.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/california",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": [
+                    "_tune_",
+                    "int",
+                    96,
+                    384
+                ],
+                "context_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU",
+                "dot_product": false,
+                "use_Q": true,
+                "use_V": true,
+                "use_labels": false,
+                "use_T": false,
+                "self_attention": true,
+                "scale_similarities": true
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    3e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.tabr_design.main",
+        "gpus": [
+            "GeForce RTX 2080 Ti"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/california",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": 230,
+                "context_dropout": 0.15275150491334166,
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": 0.5080042131578109,
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU",
+                "dot_product": false,
+                "use_Q": true,
+                "use_V": true,
+                "use_labels": false,
+                "use_T": false,
+                "self_attention": true,
+                "scale_similarities": true
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.0004742701667135807,
+                "weight_decay": 0.0
+            }
+        },
+        "n_parameters": 374901,
+        "prediction_type": null,
+        "best_epoch": 106,
+        "metrics": {
+            "train": {
+                "rmse": 0.3943290828845977,
+                "mae": 0.27094064565030784,
+                "r2": 0.8845590865280395,
+                "score": -0.3943290828845977
+            },
+            "val": {
+                "rmse": 0.47431445517203474,
+                "mae": 0.3092406179296212,
+                "r2": 0.8274565372049075,
+                "score": -0.47431445517203474
+            },
+            "test": {
+                "rmse": 0.4833291406965133,
+                "mae": 0.3206621887954384,
+                "r2": 0.8208472974549411,
+                "score": -0.4833291406965133
+            }
+        },
+        "time": "0:00:43",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 53,
+        "tuning_time": "0:35:59"
+    },
+    "time": "1:04:28",
+    "n_completed_trials": 100
+}

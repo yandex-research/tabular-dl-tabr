@@ -1,0 +1,52 @@
+{
+    "function": "bin.xgboost_.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 5,
+        "neighbors": null,
+        "data": {
+            "seed": 0,
+            "num_policy": null,
+            "cache": true,
+            "path": ":data/diamond",
+            "cat_policy": "one-hot",
+            "y_policy": "standard"
+        },
+        "model": {
+            "booster": "gbtree",
+            "n_estimators": 4000,
+            "n_jobs": 1,
+            "tree_method": "gpu_hist",
+            "use_label_encoder": false
+        },
+        "fit": {
+            "early_stopping_rounds": 3999,
+            "verbose": true
+        }
+    },
+    "prediction_type": null,
+    "time": "0:00:08",
+    "best_iteration": 80,
+    "metrics": {
+        "train": {
+            "rmse": 0.10383213550925995,
+            "mae": 0.05941274535693656,
+            "r2": 0.9891679857059559,
+            "score": -0.10383213550925995
+        },
+        "val": {
+            "rmse": 0.1401054678591808,
+            "mae": 0.07301396933949994,
+            "r2": 0.9808253507094206,
+            "score": -0.1401054678591808
+        },
+        "test": {
+            "rmse": 0.14254825266542248,
+            "mae": 0.07293464216476425,
+            "r2": 0.9795983986375695,
+            "score": -0.14254825266542248
+        }
+    }
+}

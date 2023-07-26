@@ -1,0 +1,127 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 2080 Ti",
+        "NVIDIA GeForce RTX 2080 Ti"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.catboost_.main",
+        "n_trials": 200,
+        "timeout": null,
+        "sampler": {
+            "n_startup_trials": 20
+        },
+        "space": {
+            "seed": 0,
+            "data": {
+                "seed": 0,
+                "num_policy": null,
+                "cat_policy": null,
+                "cache": true,
+                "path": ":data/regression-cat-medium-2-analcatdata_supreme",
+                "y_policy": "standard"
+            },
+            "model": {
+                "iterations": 4000,
+                "early_stopping_rounds": 200,
+                "od_pval": 0.001,
+                "bagging_temperature": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    1.0
+                ],
+                "depth": [
+                    "_tune_",
+                    "int",
+                    3,
+                    14
+                ],
+                "l2_leaf_reg": [
+                    "_tune_",
+                    "uniform",
+                    0.1,
+                    10.0
+                ],
+                "leaf_estimation_iterations": [
+                    "_tune_",
+                    "int",
+                    1,
+                    10
+                ],
+                "learning_rate": [
+                    "_tune_",
+                    "loguniform",
+                    0.001,
+                    1.0
+                ],
+                "task_type": "CPU",
+                "thread_count": 4
+            },
+            "fit": {
+                "logging_level": "Verbose"
+            }
+        }
+    },
+    "best": {
+        "function": "bin.catboost_.main",
+        "gpus": [
+            "NVIDIA GeForce RTX 2080 Ti",
+            "NVIDIA GeForce RTX 2080 Ti"
+        ],
+        "config": {
+            "seed": 0,
+            "data": {
+                "seed": 0,
+                "num_policy": null,
+                "cat_policy": null,
+                "cache": true,
+                "path": ":data/regression-cat-medium-2-analcatdata_supreme",
+                "y_policy": "standard"
+            },
+            "model": {
+                "iterations": 4000,
+                "early_stopping_rounds": 200,
+                "od_pval": 0.001,
+                "bagging_temperature": 0.36057429755295567,
+                "depth": 14,
+                "l2_leaf_reg": 3.565617136201862,
+                "leaf_estimation_iterations": 9,
+                "learning_rate": 0.9868451379067065,
+                "task_type": "CPU",
+                "thread_count": 4
+            },
+            "fit": {
+                "logging_level": "Verbose"
+            }
+        },
+        "prediction_type": null,
+        "time": "0:00:07",
+        "best_iteration": 4,
+        "metrics": {
+            "train": {
+                "rmse": 0.0449711076082707,
+                "mae": 0.0095598957778755,
+                "r2": 0.9932189460939964,
+                "score": -0.0449711076082707
+            },
+            "val": {
+                "rmse": 0.0756976776914287,
+                "mae": 0.01902542517891283,
+                "r2": 0.9849414502639241,
+                "score": -0.0756976776914287
+            },
+            "test": {
+                "rmse": 0.0890503680278218,
+                "mae": 0.01712036125491519,
+                "r2": 0.971433729799375,
+                "score": -0.0890503680278218
+            }
+        },
+        "trial_id": 131,
+        "tuning_time": "0:11:17"
+    },
+    "time": "0:18:23",
+    "n_completed_trials": 200
+}

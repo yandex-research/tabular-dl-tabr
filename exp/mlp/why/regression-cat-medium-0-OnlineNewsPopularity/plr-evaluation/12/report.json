@@ -1,0 +1,67 @@
+{
+    "function": "bin.ffn.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 12,
+        "batch_size": 128,
+        "patience": 16,
+        "n_epochs": Infinity,
+        "data": {
+            "seed": 0,
+            "cache": true,
+            "path": ":data/regression-cat-medium-0-OnlineNewsPopularity",
+            "num_policy": "quantile",
+            "cat_policy": null,
+            "y_policy": "standard"
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 7.605069589490274e-05,
+            "weight_decay": 0.0
+        },
+        "model": {
+            "backbone": {
+                "type": "MLP",
+                "n_blocks": 4,
+                "d_layer": 626,
+                "dropout": 0.0,
+                "activation": "ReLU"
+            },
+            "num_embeddings": {
+                "type": "PLREmbeddings",
+                "n_frequencies": 76,
+                "frequency_scale": 0.07312189361006256,
+                "d_embedding": 37,
+                "lite": false
+            }
+        }
+    },
+    "n_parameters": 2487978,
+    "prediction_type": null,
+    "best_epoch": 6,
+    "metrics": {
+        "train": {
+            "rmse": 0.8307189573519923,
+            "mae": 0.6098213314991803,
+            "r2": 0.20290314343274418,
+            "score": -0.8307189573519923
+        },
+        "val": {
+            "rmse": 0.8451362048321328,
+            "mae": 0.6229214463794506,
+            "r2": 0.15293039718893908,
+            "score": -0.8451362048321328
+        },
+        "test": {
+            "rmse": 0.8621389633626589,
+            "mae": 0.6317481582480475,
+            "r2": 0.14817328268091623,
+            "score": -0.8621389633626589
+        }
+    },
+    "time": "0:00:08",
+    "chunk_size": null,
+    "eval_batch_size": 32768
+}

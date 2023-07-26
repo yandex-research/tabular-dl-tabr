@@ -1,0 +1,124 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.dkl.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "kernel": [
+                "_tune_",
+                "categorical",
+                [
+                    "rbf",
+                    "sm"
+                ]
+            ],
+            "lr": [
+                "_tune_",
+                "loguniform",
+                1e-05,
+                0.01
+            ],
+            "weight_decay": [
+                "_tune_",
+                "?loguniform",
+                0.0,
+                1e-06,
+                0.001
+            ],
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/california",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "mlp": {
+                "n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    4
+                ],
+                "d_layer": [
+                    "_tune_",
+                    "int",
+                    64,
+                    768
+                ],
+                "dropout": [
+                    "_tune_",
+                    "?uniform",
+                    0.0,
+                    0.0,
+                    0.5
+                ],
+                "activation": "ReLU"
+            }
+        }
+    },
+    "best": {
+        "function": "bin.dkl.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "kernel": "rbf",
+            "lr": 0.0077514101268319705,
+            "weight_decay": 0.0,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/california",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "mlp": {
+                "n_blocks": 3,
+                "d_layer": 417,
+                "dropout": 0.35986611722813866,
+                "activation": "ReLU"
+            }
+        },
+        "prediction_type": null,
+        "best_epoch": 224,
+        "metrics": {
+            "train": {
+                "rmse": 0.3811647706110142,
+                "mae": 0.26398397286106423,
+                "r2": 0.8921382069416826,
+                "score": -0.3811647706110142
+            },
+            "val": {
+                "rmse": 0.48159131213608275,
+                "mae": 0.31077474676744643,
+                "r2": 0.8221216571106154,
+                "score": -0.48159131213608275
+            },
+            "test": {
+                "rmse": 0.49124612041596705,
+                "mae": 0.32349133764988025,
+                "r2": 0.8149301588598341,
+                "score": -0.49124612041596705
+            }
+        },
+        "time": "0:07:02",
+        "trial_id": 77,
+        "tuning_time": "9:27:54"
+    },
+    "time": "11:32:20",
+    "n_completed_trials": 100
+}

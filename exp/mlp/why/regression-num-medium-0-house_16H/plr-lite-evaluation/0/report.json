@@ -1,0 +1,93 @@
+{
+    "function": "bin.ffn.main",
+    "environment": {
+        "CUDA_VISIBLE_DEVICES": "1",
+        "gpus": {
+            "driver": "460.80",
+            "devices": [
+                {
+                    "name": "GeForce RTX 2080 Ti",
+                    "memory_total": 11554717696,
+                    "memory_free": 270991360,
+                    "memory_used": 11283726336,
+                    "utilization": 100
+                },
+                {
+                    "name": "GeForce RTX 2080 Ti",
+                    "memory_total": 11552096256,
+                    "memory_free": 9230548992,
+                    "memory_used": 2321547264,
+                    "utilization": 38
+                }
+            ]
+        },
+        "torch.version.cuda": "11.1",
+        "torch.backends.cudnn.version()": 8005,
+        "torch.cuda.nccl.version()": [
+            2,
+            10,
+            3
+        ]
+    },
+    "config": {
+        "seed": 0,
+        "batch_size": 256,
+        "patience": 16,
+        "n_epochs": Infinity,
+        "data": {
+            "seed": 0,
+            "cache": true,
+            "path": ":data/regression-num-medium-0-house_16H",
+            "num_policy": "quantile",
+            "cat_policy": null,
+            "y_policy": "standard"
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 9.593411406844521e-05,
+            "weight_decay": 1.4176375517944647e-05
+        },
+        "model": {
+            "backbone": {
+                "type": "MLP",
+                "n_blocks": 2,
+                "d_layer": 885,
+                "dropout": 0.45770885865721234,
+                "activation": "ReLU"
+            },
+            "num_embeddings": {
+                "type": "PLREmbeddings",
+                "n_frequencies": 67,
+                "frequency_scale": 0.07382324074394658,
+                "d_embedding": 31,
+                "lite": true
+            }
+        }
+    },
+    "n_parameters": 1230098,
+    "prediction_type": null,
+    "best_epoch": 76,
+    "metrics": {
+        "train": {
+            "rmse": 0.38356345050950125,
+            "mae": 0.24596877776957626,
+            "r2": 0.8106845366354658,
+            "score": -0.38356345050950125
+        },
+        "val": {
+            "rmse": 0.5716577537136104,
+            "mae": 0.28089045254375833,
+            "r2": 0.6073769578421049,
+            "score": -0.5716577537136104
+        },
+        "test": {
+            "rmse": 0.5953412201257539,
+            "mae": 0.28717859343426966,
+            "r2": 0.5127188701465876,
+            "score": -0.5953412201257539
+        }
+    },
+    "time": "0:00:10",
+    "chunk_size": null,
+    "eval_batch_size": 32768
+}

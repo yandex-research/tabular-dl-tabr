@@ -1,0 +1,71 @@
+{
+    "function": "bin.tabr.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 11,
+        "batch_size": 256,
+        "patience": 16,
+        "n_epochs": Infinity,
+        "context_size": 96,
+        "data": {
+            "seed": 0,
+            "cache": true,
+            "path": ":data/regression-cat-medium-2-Brazilian_houses",
+            "num_policy": "quantile",
+            "cat_policy": "ordinal",
+            "y_policy": "standard"
+        },
+        "model": {
+            "d_main": 251,
+            "context_dropout": 0.43914641733264204,
+            "d_multiplier": 2.0,
+            "encoder_n_blocks": 0,
+            "predictor_n_blocks": 2,
+            "mixer_normalization": "auto",
+            "dropout0": 0.11467787054960217,
+            "dropout1": 0.0,
+            "normalization": "LayerNorm",
+            "activation": "ReLU",
+            "num_embeddings": {
+                "type": "PLREmbeddings",
+                "n_frequencies": 78,
+                "frequency_scale": 1.3742087584281137,
+                "d_embedding": 32,
+                "lite": true
+            }
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 0.0005417066118619798,
+            "weight_decay": 1.3322722035093736e-05
+        }
+    },
+    "n_parameters": 895444,
+    "prediction_type": null,
+    "best_epoch": 75,
+    "metrics": {
+        "train": {
+            "rmse": 0.01676541499340596,
+            "mae": 0.00800346578765998,
+            "r2": 0.9995576828597459,
+            "score": -0.01676541499340596
+        },
+        "val": {
+            "rmse": 0.02015645418256096,
+            "mae": 0.010183870595041,
+            "r2": 0.9993565329610286,
+            "score": -0.02015645418256096
+        },
+        "test": {
+            "rmse": 0.06836769117729816,
+            "mae": 0.012220170903934235,
+            "r2": 0.9927550123650318,
+            "score": -0.06836769117729816
+        }
+    },
+    "time": "0:00:33",
+    "chunk_size": null,
+    "eval_batch_size": 32768
+}

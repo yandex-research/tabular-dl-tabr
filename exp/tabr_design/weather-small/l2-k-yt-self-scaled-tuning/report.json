@@ -1,0 +1,164 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.tabr_design.main",
+        "n_trials": 50,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 1024,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/weather-small",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": [
+                    "_tune_",
+                    "int",
+                    96,
+                    384
+                ],
+                "context_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU",
+                "dot_product": false,
+                "use_Q": false,
+                "use_V": false,
+                "use_labels": true,
+                "use_T": true,
+                "self_attention": true,
+                "scale_similarities": true
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    3e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.tabr_design.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 1024,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/weather-small",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": 260,
+                "context_dropout": 0.011273880261813085,
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": 0.3705812982455262,
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU",
+                "dot_product": false,
+                "use_Q": false,
+                "use_V": false,
+                "use_labels": true,
+                "use_T": true,
+                "self_attention": true,
+                "scale_similarities": true
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.00025660719000930555,
+                "weight_decay": 2.3101522250182388e-05
+            }
+        },
+        "n_parameters": 643241,
+        "prediction_type": null,
+        "best_epoch": 31,
+        "metrics": {
+            "train": {
+                "rmse": 1.6641979359067363,
+                "mae": 1.2428187995984032,
+                "r2": 0.9737349248294798,
+                "score": -1.6641979359067363
+            },
+            "val": {
+                "rmse": 1.8111250195997843,
+                "mae": 1.3410327167083125,
+                "r2": 0.968875736750822,
+                "score": -1.8111250195997843
+            },
+            "test": {
+                "rmse": 1.8131730547166267,
+                "mae": 1.3426505508557227,
+                "r2": 0.9688890896564425,
+                "score": -1.8131730547166267
+            }
+        },
+        "time": "0:15:06",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 5,
+        "tuning_time": "2:14:06"
+    },
+    "time": "12:56:54",
+    "n_completed_trials": 50,
+    "continuations": [
+        1,
+        2,
+        17,
+        22,
+        23,
+        24,
+        37
+    ]
+}

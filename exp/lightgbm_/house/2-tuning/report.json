@@ -1,0 +1,125 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [],
+    "config": {
+        "seed": 0,
+        "function": "bin.lightgbm_.main",
+        "n_trials": 200,
+        "timeout": null,
+        "sampler": {
+            "n_startup_trials": 20
+        },
+        "space": {
+            "seed": 0,
+            "data": {
+                "seed": 0,
+                "num_policy": null,
+                "cache": true,
+                "path": ":data/house",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "n_estimators": 4000,
+                "n_jobs": 4,
+                "feature_fraction": [
+                    "_tune_",
+                    "uniform",
+                    0.5,
+                    1.0
+                ],
+                "lambda_l2": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    0.1,
+                    10.0
+                ],
+                "learning_rate": [
+                    "_tune_",
+                    "loguniform",
+                    0.001,
+                    1.0
+                ],
+                "num_leaves": [
+                    "_tune_",
+                    "int",
+                    4,
+                    768
+                ],
+                "min_sum_hessian_in_leaf": [
+                    "_tune_",
+                    "loguniform",
+                    0.0001,
+                    100.0
+                ],
+                "bagging_fraction": [
+                    "_tune_",
+                    "uniform",
+                    0.5,
+                    1.0
+                ]
+            },
+            "fit": {
+                "early_stopping_rounds": 200,
+                "verbose": true
+            }
+        }
+    },
+    "best": {
+        "function": "bin.lightgbm_.main",
+        "gpus": [],
+        "config": {
+            "seed": 0,
+            "data": {
+                "seed": 0,
+                "num_policy": null,
+                "cache": true,
+                "path": ":data/house",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "n_estimators": 4000,
+                "n_jobs": 4,
+                "feature_fraction": 0.702996388643209,
+                "lambda_l2": 1.190872716052612,
+                "learning_rate": 0.018094591806723865,
+                "num_leaves": 52,
+                "min_sum_hessian_in_leaf": 0.046765921029555714,
+                "bagging_fraction": 0.5832661482785879
+            },
+            "fit": {
+                "early_stopping_rounds": 200,
+                "verbose": true
+            }
+        },
+        "prediction_type": null,
+        "time": "0:00:01",
+        "best_iteration": 1297,
+        "metrics": {
+            "train": {
+                "rmse": 12326.42654901497,
+                "mae": 7676.297268140431,
+                "r2": 0.9440474702312354,
+                "score": -12326.42654901497
+            },
+            "val": {
+                "rmse": 30108.404760312726,
+                "mae": 15676.970959211541,
+                "r2": 0.6957980192586044,
+                "score": -30108.404760312726
+            },
+            "test": {
+                "rmse": 31679.37339897794,
+                "mae": 15530.287818744886,
+                "r2": 0.6523669762433261,
+                "score": -31679.37339897794
+            }
+        },
+        "trial_id": 120,
+        "tuning_time": "0:26:33"
+    },
+    "time": "0:30:12",
+    "n_completed_trials": 200
+}

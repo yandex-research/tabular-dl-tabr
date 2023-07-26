@@ -1,0 +1,65 @@
+seed = 0
+function = "bin.tabr.main"
+n_trials = 50
+timeout = "__null__"
+
+[sampler]
+
+[space]
+seed = 0
+batch_size = 1024
+patience = 16
+n_epochs = inf
+context_size = 96
+
+[space.data]
+seed = 0
+cache = true
+path = ":data/microsoft"
+num_policy = "quantile"
+cat_policy = "__null__"
+y_policy = "standard"
+
+[space.model]
+num_embeddings = "__null__"
+d_main = [
+    "_tune_",
+    "int",
+    96,
+    384,
+]
+context_dropout = [
+    "_tune_",
+    "uniform",
+    0.0,
+    0.6,
+]
+d_multiplier = 2.0
+encoder_n_blocks = 0
+predictor_n_blocks = 1
+mixer_normalization = "auto"
+dropout0 = [
+    "_tune_",
+    "uniform",
+    0.0,
+    0.6,
+]
+dropout1 = 0.0
+normalization = "LayerNorm"
+activation = "ReLU"
+
+[space.optimizer]
+type = "AdamW"
+lr = [
+    "_tune_",
+    "loguniform",
+    3e-05,
+    0.001,
+]
+weight_decay = [
+    "_tune_",
+    "?loguniform",
+    0.0,
+    1e-06,
+    0.0001,
+]

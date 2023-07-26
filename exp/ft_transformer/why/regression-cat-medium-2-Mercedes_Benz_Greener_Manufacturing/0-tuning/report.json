@@ -1,0 +1,146 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "GeForce RTX 2080 Ti"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.ft_transformer.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 64,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-2-Mercedes_Benz_Greener_Manufacturing",
+                "num_policy": null,
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    1e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            },
+            "model": {
+                "d_token": [
+                    "_tune_",
+                    "int",
+                    16,
+                    384,
+                    8
+                ],
+                "n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    4
+                ],
+                "attention_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.5
+                ],
+                "ffn_d_hidden_factor": [
+                    "_tune_",
+                    "uniform",
+                    0.66666666,
+                    2.6666666666
+                ],
+                "ffn_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.5
+                ],
+                "residual_dropout": [
+                    "_tune_",
+                    "?uniform",
+                    0.0,
+                    0.0,
+                    0.2
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.ft_transformer.main",
+        "gpus": [
+            "GeForce RTX 2080 Ti"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 64,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-2-Mercedes_Benz_Greener_Manufacturing",
+                "num_policy": null,
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.00012835449741921832,
+                "weight_decay": 7.669806996998368e-05
+            },
+            "model": {
+                "d_token": 264,
+                "n_blocks": 2,
+                "attention_dropout": 0.18619113578638902,
+                "ffn_d_hidden_factor": 1.8423422959533418,
+                "ffn_dropout": 0.02317866893101627,
+                "residual_dropout": 0.0
+            }
+        },
+        "n_parameters": 1529449,
+        "prediction_type": null,
+        "best_epoch": 11,
+        "metrics": {
+            "train": {
+                "rmse": 8.22642659870037,
+                "mae": 5.368844821432958,
+                "r2": 0.5752335122044783,
+                "score": -8.22642659870037
+            },
+            "val": {
+                "rmse": 9.401158325762687,
+                "mae": 6.087171550223729,
+                "r2": 0.5182762761735509,
+                "score": -9.401158325762687
+            },
+            "test": {
+                "rmse": 7.8787568103565535,
+                "mae": 5.560639766968507,
+                "r2": 0.6007627614552663,
+                "score": -7.8787568103565535
+            }
+        },
+        "time": "0:00:54",
+        "chunk_size": null,
+        "eval_batch_size": 512,
+        "trial_id": 99,
+        "tuning_time": "2:32:37"
+    },
+    "time": "2:32:37",
+    "n_completed_trials": 100
+}

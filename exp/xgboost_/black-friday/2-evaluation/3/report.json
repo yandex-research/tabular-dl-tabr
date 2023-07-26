@@ -1,0 +1,58 @@
+{
+    "function": "bin.xgboost_.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 3,
+        "data": {
+            "seed": 0,
+            "num_policy": null,
+            "cache": true,
+            "path": ":data/black-friday",
+            "cat_policy": "one-hot",
+            "y_policy": "standard"
+        },
+        "model": {
+            "booster": "gbtree",
+            "n_estimators": 4000,
+            "n_jobs": 1,
+            "tree_method": "gpu_hist",
+            "use_label_encoder": false,
+            "colsample_bytree": 0.8695691167491448,
+            "gamma": 0,
+            "lambda": 0.38511313765059463,
+            "learning_rate": 0.009533173491356848,
+            "max_depth": 8,
+            "min_child_weight": 0.002225467797422121,
+            "subsample": 0.9291296367393247
+        },
+        "fit": {
+            "early_stopping_rounds": 200,
+            "verbose": true
+        },
+        "neighbors": null
+    },
+    "prediction_type": null,
+    "time": "0:00:09",
+    "metrics": {
+        "train": {
+            "rmse": 0.6310123038207318,
+            "mae": 0.48545255598032866,
+            "r2": 0.6011484141203067,
+            "score": -0.6310123038207318
+        },
+        "val": {
+            "rmse": 0.6798690355655739,
+            "mae": 0.5241562915496059,
+            "r2": 0.5364621357556618,
+            "score": -0.6798690355655739
+        },
+        "test": {
+            "rmse": 0.6804705324586486,
+            "mae": 0.5257920774110193,
+            "r2": 0.5404561396932381,
+            "score": -0.6804705324586486
+        }
+    }
+}

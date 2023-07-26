@@ -1,0 +1,213 @@
+{
+    "function": "bin.tune.main",
+    "environment": {
+        "CUDA_VISIBLE_DEVICES": "1",
+        "gpus": {
+            "driver": "460.80",
+            "devices": [
+                {
+                    "name": "GeForce RTX 2080 Ti",
+                    "memory_total": 11554717696,
+                    "memory_free": 2438397952,
+                    "memory_used": 9116319744,
+                    "utilization": 99
+                },
+                {
+                    "name": "GeForce RTX 2080 Ti",
+                    "memory_total": 11552096256,
+                    "memory_free": 11548950528,
+                    "memory_used": 3145728,
+                    "utilization": 0
+                }
+            ]
+        },
+        "torch.version.cuda": "11.1",
+        "torch.backends.cudnn.version()": 8005,
+        "torch.cuda.nccl.version()": [
+            2,
+            10,
+            3
+        ]
+    },
+    "config": {
+        "seed": 0,
+        "function": "bin.ffn.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-num-medium-0-medical_charges",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    1e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            },
+            "model": {
+                "backbone": {
+                    "type": "MLP",
+                    "n_blocks": [
+                        "_tune_",
+                        "int",
+                        1,
+                        6
+                    ],
+                    "d_layer": [
+                        "_tune_",
+                        "int",
+                        64,
+                        1024
+                    ],
+                    "dropout": [
+                        "_tune_",
+                        "?uniform",
+                        0.0,
+                        0.0,
+                        0.5
+                    ],
+                    "activation": "ReLU"
+                },
+                "num_embeddings": {
+                    "type": "PLREmbeddings",
+                    "n_frequencies": [
+                        "_tune_",
+                        "int",
+                        16,
+                        96
+                    ],
+                    "frequency_scale": [
+                        "_tune_",
+                        "loguniform",
+                        0.01,
+                        100.0
+                    ],
+                    "d_embedding": [
+                        "_tune_",
+                        "int",
+                        16,
+                        64
+                    ],
+                    "lite": true
+                }
+            }
+        }
+    },
+    "best": {
+        "function": "bin.ffn.main",
+        "environment": {
+            "CUDA_VISIBLE_DEVICES": "1",
+            "gpus": {
+                "driver": "460.80",
+                "devices": [
+                    {
+                        "name": "GeForce RTX 2080 Ti",
+                        "memory_total": 11554717696,
+                        "memory_free": 2438397952,
+                        "memory_used": 9116319744,
+                        "utilization": 98
+                    },
+                    {
+                        "name": "GeForce RTX 2080 Ti",
+                        "memory_total": 11552096256,
+                        "memory_free": 8819507200,
+                        "memory_used": 2732589056,
+                        "utilization": 30
+                    }
+                ]
+            },
+            "torch.version.cuda": "11.1",
+            "torch.backends.cudnn.version()": 8005,
+            "torch.cuda.nccl.version()": [
+                2,
+                10,
+                3
+            ]
+        },
+        "config": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-num-medium-0-medical_charges",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.00028316697726017334,
+                "weight_decay": 0.0
+            },
+            "model": {
+                "backbone": {
+                    "type": "MLP",
+                    "n_blocks": 3,
+                    "d_layer": 240,
+                    "dropout": 0.0,
+                    "activation": "ReLU"
+                },
+                "num_embeddings": {
+                    "type": "PLREmbeddings",
+                    "n_frequencies": 39,
+                    "frequency_scale": 0.08742302249315845,
+                    "d_embedding": 53,
+                    "lite": true
+                }
+            }
+        },
+        "n_parameters": 158625,
+        "prediction_type": null,
+        "best_epoch": 54,
+        "metrics": {
+            "train": {
+                "rmse": 0.07843012282606328,
+                "mae": 0.050244970577948855,
+                "r2": 0.9803602757684546,
+                "score": -0.07843012282606328
+            },
+            "val": {
+                "rmse": 0.08163991224838704,
+                "mae": 0.05101581560664048,
+                "r2": 0.9792427926657591,
+                "score": -0.08163991224838704
+            },
+            "test": {
+                "rmse": 0.08093348678278793,
+                "mae": 0.05067485465698374,
+                "r2": 0.9796493779132143,
+                "score": -0.08093348678278793
+            }
+        },
+        "time": "0:00:07",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 22,
+        "tuning_time": "0:03:55"
+    },
+    "time": "0:11:25",
+    "n_completed_trials": 100
+}

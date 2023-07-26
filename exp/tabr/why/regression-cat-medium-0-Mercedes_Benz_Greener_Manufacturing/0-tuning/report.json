@@ -1,0 +1,141 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.tabr.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 64,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-0-Mercedes_Benz_Greener_Manufacturing",
+                "num_policy": null,
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": [
+                    "_tune_",
+                    "int",
+                    16,
+                    384
+                ],
+                "context_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.6
+                ],
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    3e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.tabr.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 64,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "context_size": 96,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-0-Mercedes_Benz_Greener_Manufacturing",
+                "num_policy": null,
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "model": {
+                "num_embeddings": null,
+                "d_main": 132,
+                "context_dropout": 0.5260614961356879,
+                "d_multiplier": 2.0,
+                "encoder_n_blocks": 0,
+                "predictor_n_blocks": 1,
+                "mixer_normalization": "auto",
+                "dropout0": 0.1965104146890578,
+                "dropout1": 0.0,
+                "normalization": "LayerNorm",
+                "activation": "ReLU"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.0007476243302190762,
+                "weight_decay": 2.990391977167975e-06
+            }
+        },
+        "n_parameters": 208693,
+        "prediction_type": null,
+        "best_epoch": 0,
+        "metrics": {
+            "train": {
+                "rmse": 7.843797199077483,
+                "mae": 5.180134304736271,
+                "r2": 0.6030156235140871,
+                "score": -7.843797199077483
+            },
+            "val": {
+                "rmse": 8.064035532056556,
+                "mae": 5.423965897713288,
+                "r2": 0.5818130868796646,
+                "score": -8.064035532056556
+            },
+            "test": {
+                "rmse": 9.833366895794272,
+                "mae": 5.551548926267827,
+                "r2": 0.46810175541002075,
+                "score": -9.833366895794272
+            }
+        },
+        "time": "0:00:06",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 93,
+        "tuning_time": "0:10:56"
+    },
+    "time": "0:11:31",
+    "n_completed_trials": 100
+}

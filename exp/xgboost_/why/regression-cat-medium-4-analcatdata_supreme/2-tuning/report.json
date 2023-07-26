@@ -1,0 +1,144 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 2080 Ti"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.xgboost_.main",
+        "n_trials": 200,
+        "timeout": null,
+        "sampler": {
+            "n_startup_trials": 20
+        },
+        "space": {
+            "seed": 0,
+            "data": {
+                "seed": 0,
+                "num_policy": null,
+                "cache": true,
+                "path": ":data/regression-cat-medium-4-analcatdata_supreme",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "booster": "gbtree",
+                "n_estimators": 4000,
+                "n_jobs": 1,
+                "tree_method": "gpu_hist",
+                "use_label_encoder": false,
+                "colsample_bytree": [
+                    "_tune_",
+                    "uniform",
+                    0.5,
+                    1.0
+                ],
+                "gamma": [
+                    "_tune_",
+                    "?loguniform",
+                    0,
+                    0.001,
+                    100.0
+                ],
+                "lambda": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    0.1,
+                    10.0
+                ],
+                "learning_rate": [
+                    "_tune_",
+                    "loguniform",
+                    0.001,
+                    1.0
+                ],
+                "max_depth": [
+                    "_tune_",
+                    "int",
+                    3,
+                    14
+                ],
+                "min_child_weight": [
+                    "_tune_",
+                    "loguniform",
+                    0.0001,
+                    100.0
+                ],
+                "subsample": [
+                    "_tune_",
+                    "uniform",
+                    0.5,
+                    1.0
+                ]
+            },
+            "fit": {
+                "early_stopping_rounds": 200,
+                "verbose": true
+            }
+        }
+    },
+    "best": {
+        "function": "bin.xgboost_.main",
+        "gpus": [
+            "NVIDIA GeForce RTX 2080 Ti"
+        ],
+        "config": {
+            "seed": 0,
+            "data": {
+                "seed": 0,
+                "num_policy": null,
+                "cache": true,
+                "path": ":data/regression-cat-medium-4-analcatdata_supreme",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "booster": "gbtree",
+                "n_estimators": 4000,
+                "n_jobs": 1,
+                "tree_method": "gpu_hist",
+                "use_label_encoder": false,
+                "colsample_bytree": 0.8571034742132778,
+                "gamma": 0.028705945787091958,
+                "lambda": 3.3013887134083917,
+                "learning_rate": 0.49360191264529846,
+                "max_depth": 9,
+                "min_child_weight": 0.014444409260653305,
+                "subsample": 0.5612958303318747
+            },
+            "fit": {
+                "early_stopping_rounds": 200,
+                "verbose": true
+            },
+            "neighbors": null
+        },
+        "prediction_type": null,
+        "time": "0:00:01",
+        "best_iteration": 355,
+        "metrics": {
+            "train": {
+                "rmse": 0.04677258885602962,
+                "mae": 0.014412896493490646,
+                "r2": 0.9924366099042056,
+                "score": -0.04677258885602962
+            },
+            "val": {
+                "rmse": 0.048289072860885976,
+                "mae": 0.014670417708735783,
+                "r2": 0.9939505589474618,
+                "score": -0.048289072860885976
+            },
+            "test": {
+                "rmse": 0.08956164600371812,
+                "mae": 0.018860754069415897,
+                "r2": 0.9739316984030282,
+                "score": -0.08956164600371812
+            }
+        },
+        "trial_id": 156,
+        "tuning_time": "0:02:00"
+    },
+    "time": "0:02:28",
+    "n_completed_trials": 200
+}

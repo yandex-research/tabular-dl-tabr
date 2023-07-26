@@ -1,0 +1,132 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM4-40GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.ffn.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "num_embeddings": null,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/california",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "type": "MLP",
+                "n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    6
+                ],
+                "d_layer": [
+                    "_tune_",
+                    "int",
+                    64,
+                    1024
+                ],
+                "dropout": [
+                    "_tune_",
+                    "?uniform",
+                    0.0,
+                    0.0,
+                    0.5
+                ],
+                "activation": "ReLU"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    1e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.ffn.main",
+        "gpus": [
+            "A100-SXM4-40GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/california",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.0005261111893873331,
+                "weight_decay": 7.041081826641309e-06
+            },
+            "model": {
+                "num_embeddings": null,
+                "backbone": {
+                    "type": "MLP",
+                    "n_blocks": 2,
+                    "d_layer": 138,
+                    "dropout": 0.09478532976433543,
+                    "activation": "ReLU"
+                }
+            }
+        },
+        "n_parameters": 20563,
+        "prediction_type": null,
+        "best_epoch": 205,
+        "metrics": {
+            "train": {
+                "rmse": 0.4158455233015889,
+                "mae": 0.29000994596576746,
+                "r2": 0.8716174081199529,
+                "score": -0.4158455233015889
+            },
+            "val": {
+                "rmse": 0.48920862940556253,
+                "mae": 0.32817490287062867,
+                "r2": 0.8164501483076873,
+                "score": -0.48920862940556253
+            },
+            "test": {
+                "rmse": 0.4999578930532786,
+                "mae": 0.3404043177445679,
+                "r2": 0.8083078843109198,
+                "score": -0.4999578930532786
+            }
+        },
+        "time": "0:00:20",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 87,
+        "tuning_time": "0:19:54"
+    },
+    "time": "0:23:00",
+    "n_completed_trials": 100
+}

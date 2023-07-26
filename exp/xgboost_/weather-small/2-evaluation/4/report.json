@@ -1,0 +1,58 @@
+{
+    "function": "bin.xgboost_.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 4,
+        "data": {
+            "seed": 0,
+            "num_policy": null,
+            "cache": true,
+            "path": ":data/weather-small",
+            "cat_policy": null,
+            "y_policy": "standard"
+        },
+        "model": {
+            "booster": "gbtree",
+            "n_estimators": 4000,
+            "n_jobs": 1,
+            "tree_method": "gpu_hist",
+            "use_label_encoder": false,
+            "colsample_bytree": 0.653493234422183,
+            "gamma": 0,
+            "lambda": 9.54472717672975,
+            "learning_rate": 0.029414332977269832,
+            "max_depth": 13,
+            "min_child_weight": 38.27420423921344,
+            "subsample": 0.7827469427538234
+        },
+        "fit": {
+            "early_stopping_rounds": 200,
+            "verbose": true
+        },
+        "neighbors": null
+    },
+    "prediction_type": null,
+    "time": "0:02:01",
+    "metrics": {
+        "train": {
+            "rmse": 0.2976950564891873,
+            "mae": 0.2100816474917977,
+            "r2": 0.999159549875173,
+            "score": -0.2976950564891873
+        },
+        "val": {
+            "rmse": 1.7782457481617628,
+            "mae": 1.3085683107638175,
+            "r2": 0.9699955406447887,
+            "score": -1.7782457481617628
+        },
+        "test": {
+            "rmse": 1.7851694755584089,
+            "mae": 1.3129525143003349,
+            "r2": 0.9698426540770528,
+            "score": -1.7851694755584089
+        }
+    }
+}

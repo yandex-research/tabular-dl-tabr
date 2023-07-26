@@ -1,0 +1,146 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.ft_transformer.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-0-OnlineNewsPopularity",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    1e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            },
+            "model": {
+                "d_token": [
+                    "_tune_",
+                    "int",
+                    16,
+                    384,
+                    8
+                ],
+                "n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    4
+                ],
+                "attention_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.5
+                ],
+                "ffn_d_hidden_factor": [
+                    "_tune_",
+                    "uniform",
+                    0.66666666,
+                    2.6666666666
+                ],
+                "ffn_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.5
+                ],
+                "residual_dropout": [
+                    "_tune_",
+                    "?uniform",
+                    0.0,
+                    0.0,
+                    0.2
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.ft_transformer.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-0-OnlineNewsPopularity",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.00017135072980718915,
+                "weight_decay": 2.1399756078506646e-06
+            },
+            "model": {
+                "d_token": 72,
+                "n_blocks": 2,
+                "attention_dropout": 0.26610404088876183,
+                "ffn_d_hidden_factor": 2.3005464135276403,
+                "ffn_dropout": 0.4046343226992152,
+                "residual_dropout": 0.008705376754039776
+            }
+        },
+        "n_parameters": 123349,
+        "prediction_type": null,
+        "best_epoch": 64,
+        "metrics": {
+            "train": {
+                "rmse": 0.826536685758247,
+                "mae": 0.6061722399794789,
+                "r2": 0.2109089325102559,
+                "score": -0.826536685758247
+            },
+            "val": {
+                "rmse": 0.8416043094105984,
+                "mae": 0.6198232375149644,
+                "r2": 0.15999553618289686,
+                "score": -0.8416043094105984
+            },
+            "test": {
+                "rmse": 0.8602633440044735,
+                "mae": 0.6288588111654541,
+                "r2": 0.1518756682637037,
+                "score": -0.8602633440044735
+            }
+        },
+        "time": "0:00:43",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 32,
+        "tuning_time": "0:24:45"
+    },
+    "time": "0:59:11",
+    "n_completed_trials": 100
+}

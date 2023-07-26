@@ -1,0 +1,124 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.dkl.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "kernel": [
+                "_tune_",
+                "categorical",
+                [
+                    "rbf",
+                    "sm"
+                ]
+            ],
+            "lr": [
+                "_tune_",
+                "loguniform",
+                1e-05,
+                0.01
+            ],
+            "weight_decay": [
+                "_tune_",
+                "?loguniform",
+                0.0,
+                1e-06,
+                0.001
+            ],
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/house",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "mlp": {
+                "n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    4
+                ],
+                "d_layer": [
+                    "_tune_",
+                    "int",
+                    64,
+                    768
+                ],
+                "dropout": [
+                    "_tune_",
+                    "?uniform",
+                    0.0,
+                    0.0,
+                    0.5
+                ],
+                "activation": "ReLU"
+            }
+        }
+    },
+    "best": {
+        "function": "bin.dkl.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "kernel": "rbf",
+            "lr": 0.004225457444567234,
+            "weight_decay": 6.602670231198722e-06,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/house",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "mlp": {
+                "n_blocks": 4,
+                "d_layer": 658,
+                "dropout": 0.31792248510915255,
+                "activation": "ReLU"
+            }
+        },
+        "prediction_type": null,
+        "best_epoch": 81,
+        "metrics": {
+            "train": {
+                "rmse": 20488.890635519412,
+                "mae": 11965.355534670118,
+                "r2": 0.8454097104115195,
+                "score": -20488.890635519412
+            },
+            "val": {
+                "rmse": 28398.659410516222,
+                "mae": 14540.204984057695,
+                "r2": 0.7293660925682228,
+                "score": -28398.659410516222
+            },
+            "test": {
+                "rmse": 51467.023230088314,
+                "mae": 31539.547686349833,
+                "r2": 0.08245791716441109,
+                "score": -51467.023230088314
+            }
+        },
+        "time": "0:03:17",
+        "trial_id": 12,
+        "tuning_time": "1:28:27"
+    },
+    "time": "7:23:18",
+    "n_completed_trials": 100
+}

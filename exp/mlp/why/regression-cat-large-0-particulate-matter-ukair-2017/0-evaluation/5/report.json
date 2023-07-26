@@ -1,0 +1,61 @@
+{
+    "function": "bin.ffn.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 5,
+        "batch_size": 256,
+        "patience": 16,
+        "n_epochs": Infinity,
+        "data": {
+            "seed": 0,
+            "cache": true,
+            "path": ":data/regression-cat-large-0-particulate-matter-ukair-2017",
+            "num_policy": "quantile",
+            "cat_policy": "ordinal",
+            "y_policy": "standard"
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 0.00020788604136045102,
+            "weight_decay": 0.0
+        },
+        "model": {
+            "num_embeddings": null,
+            "backbone": {
+                "type": "MLP",
+                "n_blocks": 2,
+                "d_layer": 181,
+                "dropout": 0.1424144273989589,
+                "activation": "ReLU"
+            }
+        }
+    },
+    "n_parameters": 38011,
+    "prediction_type": null,
+    "best_epoch": 107,
+    "metrics": {
+        "train": {
+            "rmse": 0.36345064526352877,
+            "mae": 0.2532282749811259,
+            "r2": 0.716129334096463,
+            "score": -0.36345064526352877
+        },
+        "val": {
+            "rmse": 0.3833040594018271,
+            "mae": 0.2665670688441555,
+            "r2": 0.6808743702621196,
+            "score": -0.3833040594018271
+        },
+        "test": {
+            "rmse": 0.37768250553216126,
+            "mae": 0.2634310189266511,
+            "r2": 0.6911442008538307,
+            "score": -0.37768250553216126
+        }
+    },
+    "time": "0:00:45",
+    "chunk_size": null,
+    "eval_batch_size": 32768
+}

@@ -1,0 +1,146 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.ft_transformer.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-1-Brazilian_houses",
+                "num_policy": "quantile",
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    1e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            },
+            "model": {
+                "d_token": [
+                    "_tune_",
+                    "int",
+                    16,
+                    384,
+                    8
+                ],
+                "n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    4
+                ],
+                "attention_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.5
+                ],
+                "ffn_d_hidden_factor": [
+                    "_tune_",
+                    "uniform",
+                    0.66666666,
+                    2.6666666666
+                ],
+                "ffn_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.5
+                ],
+                "residual_dropout": [
+                    "_tune_",
+                    "?uniform",
+                    0.0,
+                    0.0,
+                    0.2
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.ft_transformer.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-1-Brazilian_houses",
+                "num_policy": "quantile",
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.0007275843800232761,
+                "weight_decay": 0.0
+            },
+            "model": {
+                "d_token": 64,
+                "n_blocks": 3,
+                "attention_dropout": 0.3302000083099016,
+                "ffn_d_hidden_factor": 0.9814315251490513,
+                "ffn_dropout": 0.23799471852675463,
+                "residual_dropout": 0.0
+            }
+        },
+        "n_parameters": 88757,
+        "prediction_type": null,
+        "best_epoch": 88,
+        "metrics": {
+            "train": {
+                "rmse": 0.04093339151219291,
+                "mae": 0.011703210734199665,
+                "r2": 0.9974087377554984,
+                "score": -0.04093339151219291
+            },
+            "val": {
+                "rmse": 0.022507282458077295,
+                "mae": 0.011392293344274274,
+                "r2": 0.9991822227514654,
+                "score": -0.022507282458077295
+            },
+            "test": {
+                "rmse": 0.03399804642064768,
+                "mae": 0.011510850505806136,
+                "r2": 0.9981166768480167,
+                "score": -0.03399804642064768
+            }
+        },
+        "time": "0:00:40",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 36,
+        "tuning_time": "0:30:24"
+    },
+    "time": "1:25:10",
+    "n_completed_trials": 100
+}

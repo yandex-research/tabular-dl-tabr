@@ -1,0 +1,61 @@
+{
+    "function": "bin.ffn.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 9,
+        "batch_size": 256,
+        "patience": 16,
+        "n_epochs": Infinity,
+        "data": {
+            "seed": 0,
+            "cache": true,
+            "path": ":data/regression-num-medium-0-medical_charges",
+            "num_policy": "quantile",
+            "cat_policy": null,
+            "y_policy": "standard"
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 8.836484994383952e-05,
+            "weight_decay": 1.8741779913972636e-06
+        },
+        "model": {
+            "num_embeddings": null,
+            "backbone": {
+                "type": "MLP",
+                "n_blocks": 5,
+                "d_layer": 324,
+                "dropout": 0.0,
+                "activation": "ReLU"
+            }
+        }
+    },
+    "n_parameters": 422821,
+    "prediction_type": null,
+    "best_epoch": 33,
+    "metrics": {
+        "train": {
+            "rmse": 0.07915499306268912,
+            "mae": 0.05159813159229998,
+            "r2": 0.9799955689920624,
+            "score": -0.07915499306268912
+        },
+        "val": {
+            "rmse": 0.08235022774401131,
+            "mae": 0.0525101461543418,
+            "r2": 0.9788800214881748,
+            "score": -0.08235022774401131
+        },
+        "test": {
+            "rmse": 0.08151167808211161,
+            "mae": 0.052133154783557956,
+            "r2": 0.9793575662837174,
+            "score": -0.08151167808211161
+        }
+    },
+    "time": "0:00:06",
+    "chunk_size": null,
+    "eval_batch_size": 32768
+}

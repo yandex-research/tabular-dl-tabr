@@ -1,0 +1,146 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.ft_transformer.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-large-0-particulate-matter-ukair-2017",
+                "num_policy": "quantile",
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    1e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            },
+            "model": {
+                "d_token": [
+                    "_tune_",
+                    "int",
+                    16,
+                    384,
+                    8
+                ],
+                "n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    4
+                ],
+                "attention_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.5
+                ],
+                "ffn_d_hidden_factor": [
+                    "_tune_",
+                    "uniform",
+                    0.66666666,
+                    2.6666666666
+                ],
+                "ffn_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.5
+                ],
+                "residual_dropout": [
+                    "_tune_",
+                    "?uniform",
+                    0.0,
+                    0.0,
+                    0.2
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.ft_transformer.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-large-0-particulate-matter-ukair-2017",
+                "num_policy": "quantile",
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.0002497360972497981,
+                "weight_decay": 2.7290968889864355e-06
+            },
+            "model": {
+                "d_token": 240,
+                "n_blocks": 4,
+                "attention_dropout": 0.36627937983317765,
+                "ffn_d_hidden_factor": 1.4283482228339652,
+                "ffn_dropout": 0.20522619939584816,
+                "residual_dropout": 0.0
+            }
+        },
+        "n_parameters": 1926097,
+        "prediction_type": null,
+        "best_epoch": 31,
+        "metrics": {
+            "train": {
+                "rmse": 0.36005652296442453,
+                "mae": 0.2495788340656393,
+                "r2": 0.7214064770383368,
+                "score": -0.36005652296442453
+            },
+            "val": {
+                "rmse": 0.3757932760990037,
+                "mae": 0.25929591699858,
+                "r2": 0.6932582699295393,
+                "score": -0.3757932760990037
+            },
+            "test": {
+                "rmse": 0.3714274909260397,
+                "mae": 0.25663068726569804,
+                "r2": 0.7012897878868432,
+                "score": -0.3714274909260397
+            }
+        },
+        "time": "0:02:54",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 58,
+        "tuning_time": "3:37:48"
+    },
+    "time": "6:04:14",
+    "n_completed_trials": 100
+}

@@ -1,0 +1,236 @@
+{
+    "function": "run.run_cv_splits",
+    "environment": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "gpus": {
+            "driver": "450.119.04",
+            "devices": [
+                {
+                    "name": "A100-SXM4-40GB",
+                    "memory_total": 42506321920,
+                    "memory_free": 42503176192,
+                    "memory_used": 3145728,
+                    "utilization": 0
+                }
+            ]
+        },
+        "torch.version.cuda": "11.1",
+        "torch.backends.cudnn.version()": 8005,
+        "torch.cuda.nccl.version()": [
+            2,
+            10,
+            3
+        ]
+    },
+    "config": {
+        "entity": null,
+        "project": "default",
+        "wandb_dir": "./",
+        "data_path": "data",
+        "data_set": "rtdl",
+        "data_name": "churn",
+        "data_num_normalization": "quantile",
+        "data_loader_nprocs": 0,
+        "data_set_on_cuda": false,
+        "data_force_reload": true,
+        "data_log_mem_usage": false,
+        "data_clear_tmp_files": false,
+        "data_dtype": "float32",
+        "seed": 1,
+        "exp_device": "cuda:0",
+        "exp_azure_sweep": false,
+        "exp_test_equivariance": false,
+        "exp_show_empirical_label_dist": false,
+        "exp_smoke_test": false,
+        "exp_name": "npt/churn/0_evaluation/1",
+        "exp_group": null,
+        "np_seed": 42,
+        "torch_seed": 42,
+        "baseline_seed": 42,
+        "exp_use_cuda": true,
+        "exp_n_runs": 1,
+        "exp_batch_size": 4096,
+        "exp_batch_mode_balancing": true,
+        "exp_batch_class_balancing": false,
+        "exp_minibatch_sgd": true,
+        "exp_val_perc": 0.1,
+        "exp_test_perc": 0.2,
+        "exp_num_total_steps": 2000.0,
+        "exp_patience": -1,
+        "exp_checkpoint_setting": "best_model",
+        "exp_cache_cadence": 1,
+        "exp_load_from_checkpoint": false,
+        "exp_print_every_nth_forward": false,
+        "exp_eval_every_n": 1,
+        "exp_eval_every_epoch_or_steps": "epochs",
+        "exp_eval_test_at_end_only": false,
+        "exp_artificial_missing": 0,
+        "exp_optimizer": "lookahead_lamb",
+        "exp_lookahead_update_cadence": 6,
+        "exp_optimizer_warmup_proportion": 0.7,
+        "exp_optimizer_warmup_fixed_n_steps": 10000,
+        "exp_lr": 0.001,
+        "exp_scheduler": "flat_and_anneal",
+        "exp_gradient_clipping": 1.0,
+        "exp_weight_decay": 0,
+        "exp_tradeoff": 1.0,
+        "exp_tradeoff_annealing": "cosine",
+        "exp_tradeoff_annealing_proportion": 1,
+        "mp_distributed": false,
+        "mp_nodes": 1,
+        "mp_gpus": 1,
+        "mp_nr": 0,
+        "mp_no_sync": -1,
+        "mp_bucket_cap_mb": 25,
+        "verbose": false,
+        "debug_leakage": false,
+        "debug_label_leakage": false,
+        "debug_row_interactions": false,
+        "debug_eval_row_interactions": false,
+        "debug_eval_row_interactions_timer": null,
+        "debug_row_interactions_mode": null,
+        "debug_no_stratify": false,
+        "debug_corrupt_standard_dataset_ablate_shuffle": false,
+        "model_class": "NPT",
+        "sklearn_hyper_search": "Grid",
+        "sklearn_model": "All",
+        "sklearn_verbose": 1,
+        "sklearn_n_jobs": -1,
+        "sklearn_val_final_fit": false,
+        "model_is_semi_supervised": false,
+        "model_dtype": "float32",
+        "model_amp": false,
+        "model_feature_type_embedding": true,
+        "model_feature_index_embedding": true,
+        "model_bert_augmentation": true,
+        "model_bert_mask_percentage": 0.9,
+        "model_augmentation_bert_mask_prob": {
+            "train": 0.15,
+            "val": 0,
+            "test": 0
+        },
+        "model_label_bert_mask_prob": {
+            "train": 1,
+            "val": 1,
+            "test": 1
+        },
+        "model_embedding_layer_norm": false,
+        "model_att_block_layer_norm": true,
+        "model_layer_norm_eps": 1e-12,
+        "model_att_score_norm": "softmax",
+        "model_pre_layer_norm": true,
+        "model_hidden_dropout_prob": 0.1,
+        "model_att_score_dropout_prob": 0.1,
+        "model_hybrid_debug": false,
+        "model_checkpoint_key": "checkpoint",
+        "model_dim_hidden": 64,
+        "model_num_heads": 8,
+        "model_sep_res_embed": true,
+        "model_stacking_depth": 8,
+        "model_mix_heads": true,
+        "model_rff_depth": 1,
+        "model_image_n_patches": false,
+        "model_image_patch_type": "linear",
+        "model_image_n_channels": 3,
+        "model_image_share_embed": true,
+        "model_image_n_classes": 10,
+        "model_image_random_crop_and_flip": true,
+        "metrics_auroc": false,
+        "viz_att_maps": false,
+        "viz_att_maps_save_path": "data/attention_maps"
+    },
+    "time": "0:08:34",
+    "prediction_type": "logits",
+    "metrics": {
+        "train": {
+            "0": {
+                "precision": 0.8660101986987867,
+                "recall": 0.9664442700156985,
+                "f1-score": 0.9134749142168228,
+                "support": 5096
+            },
+            "1": {
+                "precision": 0.7601683029453016,
+                "recall": 0.4156441717791411,
+                "f1-score": 0.5374318294496777,
+                "support": 1304
+            },
+            "accuracy": 0.85421875,
+            "macro avg": {
+                "precision": 0.8130892508220442,
+                "recall": 0.6910442208974198,
+                "f1-score": 0.7254533718332503,
+                "support": 6400
+            },
+            "weighted avg": {
+                "precision": 0.8444449124390141,
+                "recall": 0.85421875,
+                "f1-score": 0.8368561356955171,
+                "support": 6400
+            },
+            "cross-entropy": 0.38902305068285925,
+            "roc-auc": 0.8553797757895041,
+            "score": 0.85421875
+        },
+        "val": {
+            "0": {
+                "precision": 0.8790264853256979,
+                "recall": 0.9638932496075353,
+                "f1-score": 0.9195058030700113,
+                "support": 1274
+            },
+            "1": {
+                "precision": 0.7733990147783252,
+                "recall": 0.4815950920245399,
+                "f1-score": 0.5935727788279773,
+                "support": 326
+            },
+            "accuracy": 0.865625,
+            "macro avg": {
+                "precision": 0.8262127500520116,
+                "recall": 0.7227441708160376,
+                "f1-score": 0.7565392909489943,
+                "support": 1600
+            },
+            "weighted avg": {
+                "precision": 0.8575048882016706,
+                "recall": 0.865625,
+                "f1-score": 0.853096949380697,
+                "support": 1600
+            },
+            "cross-entropy": 0.37638023332384435,
+            "roc-auc": 0.8678862767381611,
+            "score": 0.865625
+        },
+        "test": {
+            "0": {
+                "precision": 0.8708025042686397,
+                "recall": 0.96045197740113,
+                "f1-score": 0.9134328358208955,
+                "support": 1593
+            },
+            "1": {
+                "precision": 0.7407407407407407,
+                "recall": 0.44226044226044225,
+                "f1-score": 0.5538461538461538,
+                "support": 407
+            },
+            "accuracy": 0.855,
+            "macro avg": {
+                "precision": 0.8057716225046903,
+                "recall": 0.7013562098307862,
+                "f1-score": 0.7336394948335246,
+                "support": 2000
+            },
+            "weighted avg": {
+                "precision": 0.8443349353907122,
+                "recall": 0.855,
+                "f1-score": 0.8402569460390354,
+                "support": 2000
+            },
+            "cross-entropy": 0.3820954922875923,
+            "roc-auc": 0.8573110861246455,
+            "score": 0.855
+        }
+    }
+}

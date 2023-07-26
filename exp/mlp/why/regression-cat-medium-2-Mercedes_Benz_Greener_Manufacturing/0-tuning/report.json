@@ -1,0 +1,132 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.ffn.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "num_embeddings": null,
+            "batch_size": 64,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-2-Mercedes_Benz_Greener_Manufacturing",
+                "num_policy": null,
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "model": {
+                "type": "MLP",
+                "n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    6
+                ],
+                "d_layer": [
+                    "_tune_",
+                    "int",
+                    64,
+                    1024
+                ],
+                "dropout": [
+                    "_tune_",
+                    "?uniform",
+                    0.0,
+                    0.0,
+                    0.5
+                ],
+                "activation": "ReLU"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    1e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.ffn.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 64,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-2-Mercedes_Benz_Greener_Manufacturing",
+                "num_policy": null,
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.00011102580820747317,
+                "weight_decay": 0.0
+            },
+            "model": {
+                "num_embeddings": null,
+                "backbone": {
+                    "type": "MLP",
+                    "n_blocks": 4,
+                    "d_layer": 145,
+                    "dropout": 0.13097457625949355,
+                    "activation": "ReLU"
+                }
+            }
+        },
+        "n_parameters": 118756,
+        "prediction_type": null,
+        "best_epoch": 15,
+        "metrics": {
+            "train": {
+                "rmse": 8.01292693251507,
+                "mae": 5.065379896419245,
+                "r2": 0.59699523512184,
+                "score": -8.01292693251507
+            },
+            "val": {
+                "rmse": 9.517879346843888,
+                "mae": 6.050015558480254,
+                "r2": 0.5062402374207265,
+                "score": -9.517879346843888
+            },
+            "test": {
+                "rmse": 7.979216780973072,
+                "mae": 5.501987062485114,
+                "r2": 0.5905167476056726,
+                "score": -7.979216780973072
+            }
+        },
+        "time": "0:00:04",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 33,
+        "tuning_time": "0:02:35"
+    },
+    "time": "0:08:39",
+    "n_completed_trials": 100
+}

@@ -1,0 +1,52 @@
+{
+    "function": "bin.xgboost_.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 2080 Ti"
+    ],
+    "config": {
+        "seed": 10,
+        "neighbors": null,
+        "data": {
+            "seed": 0,
+            "num_policy": null,
+            "cache": true,
+            "path": ":data/regression-cat-large-0-particulate-matter-ukair-2017",
+            "cat_policy": "one-hot",
+            "y_policy": "standard"
+        },
+        "model": {
+            "booster": "gbtree",
+            "n_estimators": 4000,
+            "n_jobs": 1,
+            "tree_method": "gpu_hist",
+            "use_label_encoder": false
+        },
+        "fit": {
+            "early_stopping_rounds": 3999,
+            "verbose": true
+        }
+    },
+    "prediction_type": null,
+    "time": "0:00:11",
+    "best_iteration": 67,
+    "metrics": {
+        "train": {
+            "rmse": 0.3379720018404087,
+            "mae": 0.23607597789897383,
+            "r2": 0.754534139303082,
+            "score": -0.3379720018404087
+        },
+        "val": {
+            "rmse": 0.372976403979206,
+            "mae": 0.25759056355642507,
+            "r2": 0.6978395552880368,
+            "score": -0.372976403979206
+        },
+        "test": {
+            "rmse": 0.3678368901325376,
+            "mae": 0.2538578716950415,
+            "r2": 0.7070371054912101,
+            "score": -0.3678368901325376
+        }
+    }
+}

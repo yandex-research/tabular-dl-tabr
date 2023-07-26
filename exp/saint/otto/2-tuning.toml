@@ -1,0 +1,77 @@
+seed = 0
+function = "bin.saint.main"
+n_trials = 100
+timeout = "__null__"
+
+[sampler]
+
+[space]
+seed = 0
+batch_size = 512
+patience = 16
+n_epochs = inf
+
+[space.data]
+seed = 0
+cache = true
+path = ":data/otto"
+num_policy = "__null__"
+cat_policy = "__null__"
+y_policy = "__null__"
+
+[space.model]
+depth = [
+    "_tune_",
+    "int",
+    1,
+    4,
+]
+heads = 8
+attentiontype = "colrow"
+dim = [
+    "_tune_",
+    "int",
+    4,
+    32,
+    4,
+]
+dim_head = [
+    "_tune_",
+    "int",
+    2,
+    48,
+]
+ffn_mult = [
+    "_tune_",
+    "uniform",
+    0.6666666666666666,
+    2.6666666666666665,
+]
+attn_dropout = [
+    "_tune_",
+    "float",
+    0,
+    0.5,
+]
+ff_dropout = [
+    "_tune_",
+    "float",
+    0,
+    0.5,
+]
+
+[space.optimizer]
+type = "AdamW"
+lr = [
+    "_tune_",
+    "loguniform",
+    1e-05,
+    0.001,
+]
+weight_decay = [
+    "_tune_",
+    "?loguniform",
+    0,
+    1e-06,
+    0.0001,
+]

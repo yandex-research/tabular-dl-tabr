@@ -1,0 +1,68 @@
+seed = 0
+function = "bin.ffn.main"
+n_trials = 100
+timeout = "__null__"
+
+[sampler]
+
+[space]
+seed = 0
+batch_size = 1024
+patience = 16
+n_epochs = inf
+
+[space.data]
+seed = 0
+cache = true
+path = ":data/microsoft"
+num_policy = "quantile"
+cat_policy = "__null__"
+y_policy = "standard"
+
+[space.optimizer]
+type = "AdamW"
+lr = [
+    "_tune_",
+    "loguniform",
+    1e-05,
+    0.001,
+]
+weight_decay = [
+    "_tune_",
+    "?loguniform",
+    0.0,
+    1e-06,
+    0.0001,
+]
+
+[space.model.backbone]
+type = "MLP"
+n_blocks = [
+    "_tune_",
+    "int",
+    1,
+    6,
+]
+d_layer = [
+    "_tune_",
+    "int",
+    64,
+    1024,
+]
+dropout = [
+    "_tune_",
+    "?uniform",
+    0.0,
+    0.0,
+    0.5,
+]
+activation = "ReLU"
+
+[space.model.num_embeddings]
+type = "LREmbeddings"
+d_embedding = [
+    "_tune_",
+    "int",
+    16,
+    96,
+]

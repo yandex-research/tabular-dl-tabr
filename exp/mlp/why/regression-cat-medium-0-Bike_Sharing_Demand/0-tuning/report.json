@@ -1,0 +1,132 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.ffn.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "num_embeddings": null,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-0-Bike_Sharing_Demand",
+                "num_policy": "quantile",
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "model": {
+                "type": "MLP",
+                "n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    6
+                ],
+                "d_layer": [
+                    "_tune_",
+                    "int",
+                    64,
+                    1024
+                ],
+                "dropout": [
+                    "_tune_",
+                    "?uniform",
+                    0.0,
+                    0.0,
+                    0.5
+                ],
+                "activation": "ReLU"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    1e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.ffn.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-0-Bike_Sharing_Demand",
+                "num_policy": "quantile",
+                "cat_policy": "ordinal",
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.000999846423029019,
+                "weight_decay": 9.150738703231001e-05
+            },
+            "model": {
+                "num_embeddings": null,
+                "backbone": {
+                    "type": "MLP",
+                    "n_blocks": 5,
+                    "d_layer": 303,
+                    "dropout": 0.0,
+                    "activation": "ReLU"
+                }
+            }
+        },
+        "n_parameters": 374206,
+        "prediction_type": null,
+        "best_epoch": 75,
+        "metrics": {
+            "train": {
+                "rmse": 25.90035687730826,
+                "mae": 17.786456125920495,
+                "r2": 0.9795522540587542,
+                "score": -25.90035687730826
+            },
+            "val": {
+                "rmse": 45.908883778457366,
+                "mae": 28.887971430126072,
+                "r2": 0.9345921407808803,
+                "score": -45.908883778457366
+            },
+            "test": {
+                "rmse": 44.711417687434064,
+                "mae": 28.478416850015492,
+                "r2": 0.940078400968866,
+                "score": -44.711417687434064
+            }
+        },
+        "time": "0:00:10",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 27,
+        "tuning_time": "0:09:12"
+    },
+    "time": "0:21:04",
+    "n_completed_trials": 100
+}

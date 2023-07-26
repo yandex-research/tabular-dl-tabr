@@ -1,0 +1,131 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "GeForce RTX 2080 Ti",
+        "GeForce RTX 2080 Ti"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.lightgbm_.main",
+        "n_trials": 200,
+        "timeout": null,
+        "sampler": {
+            "n_startup_trials": 20
+        },
+        "space": {
+            "seed": 0,
+            "data": {
+                "seed": 0,
+                "num_policy": null,
+                "cache": true,
+                "path": ":data/regression-num-medium-1-wine_quality",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "n_estimators": 4000,
+                "n_jobs": 4,
+                "feature_fraction": [
+                    "_tune_",
+                    "uniform",
+                    0.5,
+                    1.0
+                ],
+                "lambda_l2": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    0.1,
+                    10.0
+                ],
+                "learning_rate": [
+                    "_tune_",
+                    "loguniform",
+                    0.001,
+                    1.0
+                ],
+                "num_leaves": [
+                    "_tune_",
+                    "int",
+                    4,
+                    768
+                ],
+                "min_sum_hessian_in_leaf": [
+                    "_tune_",
+                    "loguniform",
+                    0.0001,
+                    100.0
+                ],
+                "bagging_fraction": [
+                    "_tune_",
+                    "uniform",
+                    0.5,
+                    1.0
+                ]
+            },
+            "fit": {
+                "early_stopping_rounds": 200,
+                "verbose": true
+            }
+        }
+    },
+    "best": {
+        "function": "bin.lightgbm_.main",
+        "gpus": [
+            "GeForce RTX 2080 Ti",
+            "GeForce RTX 2080 Ti"
+        ],
+        "config": {
+            "seed": 0,
+            "data": {
+                "seed": 0,
+                "num_policy": null,
+                "cache": true,
+                "path": ":data/regression-num-medium-1-wine_quality",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "n_estimators": 4000,
+                "n_jobs": 4,
+                "feature_fraction": 0.6243576050628057,
+                "lambda_l2": 0.0,
+                "learning_rate": 0.013045951990411864,
+                "num_leaves": 549,
+                "min_sum_hessian_in_leaf": 2.1519950357206294,
+                "bagging_fraction": 0.5637828059660461
+            },
+            "fit": {
+                "early_stopping_rounds": 200,
+                "verbose": true
+            }
+        },
+        "prediction_type": null,
+        "time": "0:00:03",
+        "best_iteration": 1029,
+        "metrics": {
+            "train": {
+                "rmse": 0.12489102173466968,
+                "mae": 0.08226701824750493,
+                "r2": 0.9798391404485228,
+                "score": -0.12489102173466968
+            },
+            "val": {
+                "rmse": 0.5935169941356551,
+                "mae": 0.42852157666271923,
+                "r2": 0.5133418605269079,
+                "score": -0.5935169941356551
+            },
+            "test": {
+                "rmse": 0.5938342025798476,
+                "mae": 0.4179109499854451,
+                "r2": 0.523301512795421,
+                "score": -0.5938342025798476
+            }
+        },
+        "trial_id": 99,
+        "tuning_time": "0:07:42"
+    },
+    "time": "0:13:47",
+    "n_completed_trials": 200
+}

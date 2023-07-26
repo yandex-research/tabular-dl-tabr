@@ -1,0 +1,146 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM-80GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.ft_transformer.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "batch_size": 128,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-2-yprop_4_1",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    1e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            },
+            "model": {
+                "d_token": [
+                    "_tune_",
+                    "int",
+                    16,
+                    384,
+                    8
+                ],
+                "n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    4
+                ],
+                "attention_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.5
+                ],
+                "ffn_d_hidden_factor": [
+                    "_tune_",
+                    "uniform",
+                    0.66666666,
+                    2.6666666666
+                ],
+                "ffn_dropout": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    0.5
+                ],
+                "residual_dropout": [
+                    "_tune_",
+                    "?uniform",
+                    0.0,
+                    0.0,
+                    0.2
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.ft_transformer.main",
+        "gpus": [
+            "A100-SXM-80GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 128,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-medium-2-yprop_4_1",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 0.0006217706736128941,
+                "weight_decay": 2.082905485917455e-06
+            },
+            "model": {
+                "d_token": 376,
+                "n_blocks": 2,
+                "attention_dropout": 0.36583416988269135,
+                "ffn_d_hidden_factor": 1.415080264126935,
+                "ffn_dropout": 0.3701625119886991,
+                "residual_dropout": 0.0
+            }
+        },
+        "n_parameters": 2387473,
+        "prediction_type": null,
+        "best_epoch": 41,
+        "metrics": {
+            "train": {
+                "rmse": 0.029080449765284098,
+                "mae": 0.019300221987557542,
+                "r2": 0.0890170314329296,
+                "score": -0.029080449765284098
+            },
+            "val": {
+                "rmse": 0.026594111048314103,
+                "mae": 0.018958740529269935,
+                "r2": 0.06936723046245186,
+                "score": -0.026594111048314103
+            },
+            "test": {
+                "rmse": 0.027035787563553463,
+                "mae": 0.019476792214675687,
+                "r2": 0.08037207729667573,
+                "score": -0.027035787563553463
+            }
+        },
+        "time": "0:01:14",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 97,
+        "tuning_time": "1:04:52"
+    },
+    "time": "1:06:33",
+    "n_completed_trials": 100
+}

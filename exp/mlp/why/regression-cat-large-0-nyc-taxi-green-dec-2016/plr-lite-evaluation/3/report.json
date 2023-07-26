@@ -1,0 +1,93 @@
+{
+    "function": "bin.ffn.main",
+    "environment": {
+        "CUDA_VISIBLE_DEVICES": "1",
+        "gpus": {
+            "driver": "460.80",
+            "devices": [
+                {
+                    "name": "GeForce RTX 2080 Ti",
+                    "memory_total": 11554717696,
+                    "memory_free": 1190592512,
+                    "memory_used": 10364125184,
+                    "utilization": 98
+                },
+                {
+                    "name": "GeForce RTX 2080 Ti",
+                    "memory_total": 11552096256,
+                    "memory_free": 8777564160,
+                    "memory_used": 2774532096,
+                    "utilization": 27
+                }
+            ]
+        },
+        "torch.version.cuda": "11.1",
+        "torch.backends.cudnn.version()": 8005,
+        "torch.cuda.nccl.version()": [
+            2,
+            10,
+            3
+        ]
+    },
+    "config": {
+        "seed": 3,
+        "batch_size": 256,
+        "patience": 16,
+        "n_epochs": Infinity,
+        "data": {
+            "seed": 0,
+            "cache": true,
+            "path": ":data/regression-cat-large-0-nyc-taxi-green-dec-2016",
+            "num_policy": "quantile",
+            "cat_policy": "ordinal",
+            "y_policy": "standard"
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 1.989410811802954e-05,
+            "weight_decay": 0.0
+        },
+        "model": {
+            "backbone": {
+                "type": "MLP",
+                "n_blocks": 1,
+                "d_layer": 270,
+                "dropout": 0.16685257734384756,
+                "activation": "ReLU"
+            },
+            "num_embeddings": {
+                "type": "PLREmbeddings",
+                "n_frequencies": 71,
+                "frequency_scale": 77.89902875750721,
+                "d_embedding": 28,
+                "lite": true
+            }
+        }
+    },
+    "n_parameters": 77544,
+    "prediction_type": null,
+    "best_epoch": 165,
+    "metrics": {
+        "train": {
+            "rmse": 0.3395645781879517,
+            "mae": 0.20157846984335492,
+            "r2": 0.6747328027245417,
+            "score": -0.3395645781879517
+        },
+        "val": {
+            "rmse": 0.3645478906851499,
+            "mae": 0.21528955091945257,
+            "r2": 0.6282649932080624,
+            "score": -0.3645478906851499
+        },
+        "test": {
+            "rmse": 0.3679002694164644,
+            "mae": 0.21552412704626,
+            "r2": 0.6198860543334784,
+            "score": -0.3679002694164644
+        }
+    },
+    "time": "0:01:13",
+    "chunk_size": null,
+    "eval_batch_size": 32768
+}

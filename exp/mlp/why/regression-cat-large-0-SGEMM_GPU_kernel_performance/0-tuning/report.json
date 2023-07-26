@@ -1,0 +1,132 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "A100-SXM4-40GB"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.ffn.main",
+        "n_trials": 100,
+        "timeout": null,
+        "sampler": {},
+        "space": {
+            "seed": 0,
+            "num_embeddings": null,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-large-0-SGEMM_GPU_kernel_performance",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "model": {
+                "type": "MLP",
+                "n_blocks": [
+                    "_tune_",
+                    "int",
+                    1,
+                    6
+                ],
+                "d_layer": [
+                    "_tune_",
+                    "int",
+                    64,
+                    1024
+                ],
+                "dropout": [
+                    "_tune_",
+                    "?uniform",
+                    0.0,
+                    0.0,
+                    0.5
+                ],
+                "activation": "ReLU"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": [
+                    "_tune_",
+                    "loguniform",
+                    1e-05,
+                    0.001
+                ],
+                "weight_decay": [
+                    "_tune_",
+                    "?loguniform",
+                    0.0,
+                    1e-06,
+                    0.0001
+                ]
+            }
+        }
+    },
+    "best": {
+        "function": "bin.ffn.main",
+        "gpus": [
+            "A100-SXM4-40GB"
+        ],
+        "config": {
+            "seed": 0,
+            "batch_size": 256,
+            "patience": 16,
+            "n_epochs": Infinity,
+            "data": {
+                "seed": 0,
+                "cache": true,
+                "path": ":data/regression-cat-large-0-SGEMM_GPU_kernel_performance",
+                "num_policy": "quantile",
+                "cat_policy": null,
+                "y_policy": "standard"
+            },
+            "optimizer": {
+                "type": "AdamW",
+                "lr": 1.9091129577145255e-05,
+                "weight_decay": 0.0
+            },
+            "model": {
+                "num_embeddings": null,
+                "backbone": {
+                    "type": "MLP",
+                    "n_blocks": 6,
+                    "d_layer": 446,
+                    "dropout": 0.0,
+                    "activation": "ReLU"
+                }
+            }
+        },
+        "n_parameters": 1001717,
+        "prediction_type": null,
+        "best_epoch": 217,
+        "metrics": {
+            "train": {
+                "rmse": 0.015630292593414107,
+                "mae": 0.008552288014160636,
+                "r2": 0.9998052272522546,
+                "score": -0.015630292593414107
+            },
+            "val": {
+                "rmse": 0.016003545642239297,
+                "mae": 0.008870739624409207,
+                "r2": 0.9997970641132286,
+                "score": -0.016003545642239297
+            },
+            "test": {
+                "rmse": 0.01575834066416185,
+                "mae": 0.008820086220081791,
+                "r2": 0.9997995753062313,
+                "score": -0.01575834066416185
+            }
+        },
+        "time": "0:02:23",
+        "chunk_size": null,
+        "eval_batch_size": 32768,
+        "trial_id": 91,
+        "tuning_time": "2:54:05"
+    },
+    "time": "3:11:41",
+    "n_completed_trials": 100
+}

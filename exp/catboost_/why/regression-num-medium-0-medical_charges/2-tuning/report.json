@@ -1,0 +1,127 @@
+{
+    "function": "bin.tune.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 2080 Ti",
+        "NVIDIA GeForce RTX 2080 Ti"
+    ],
+    "config": {
+        "seed": 0,
+        "function": "bin.catboost_.main",
+        "n_trials": 200,
+        "timeout": null,
+        "sampler": {
+            "n_startup_trials": 20
+        },
+        "space": {
+            "seed": 0,
+            "data": {
+                "seed": 0,
+                "num_policy": null,
+                "cat_policy": null,
+                "cache": true,
+                "path": ":data/regression-num-medium-0-medical_charges",
+                "y_policy": "standard"
+            },
+            "model": {
+                "iterations": 4000,
+                "early_stopping_rounds": 200,
+                "od_pval": 0.001,
+                "bagging_temperature": [
+                    "_tune_",
+                    "uniform",
+                    0.0,
+                    1.0
+                ],
+                "depth": [
+                    "_tune_",
+                    "int",
+                    3,
+                    14
+                ],
+                "l2_leaf_reg": [
+                    "_tune_",
+                    "uniform",
+                    0.1,
+                    10.0
+                ],
+                "leaf_estimation_iterations": [
+                    "_tune_",
+                    "int",
+                    1,
+                    10
+                ],
+                "learning_rate": [
+                    "_tune_",
+                    "loguniform",
+                    0.001,
+                    1.0
+                ],
+                "task_type": "CPU",
+                "thread_count": 4
+            },
+            "fit": {
+                "logging_level": "Verbose"
+            }
+        }
+    },
+    "best": {
+        "function": "bin.catboost_.main",
+        "gpus": [
+            "NVIDIA GeForce RTX 2080 Ti",
+            "NVIDIA GeForce RTX 2080 Ti"
+        ],
+        "config": {
+            "seed": 0,
+            "data": {
+                "seed": 0,
+                "num_policy": null,
+                "cat_policy": null,
+                "cache": true,
+                "path": ":data/regression-num-medium-0-medical_charges",
+                "y_policy": "standard"
+            },
+            "model": {
+                "iterations": 4000,
+                "early_stopping_rounds": 200,
+                "od_pval": 0.001,
+                "bagging_temperature": 0.028831118468720822,
+                "depth": 6,
+                "l2_leaf_reg": 1.057435930383062,
+                "leaf_estimation_iterations": 4,
+                "learning_rate": 0.0024261815278678496,
+                "task_type": "CPU",
+                "thread_count": 4
+            },
+            "fit": {
+                "logging_level": "Verbose"
+            }
+        },
+        "prediction_type": null,
+        "time": "0:00:07",
+        "best_iteration": 3348,
+        "metrics": {
+            "train": {
+                "rmse": 0.07871010571308638,
+                "mae": 0.05094538812931357,
+                "r2": 0.980219804496458,
+                "score": -0.07871010571308638
+            },
+            "val": {
+                "rmse": 0.0822190962175617,
+                "mae": 0.05185562387749846,
+                "r2": 0.9789472302375027,
+                "score": -0.0822190962175617
+            },
+            "test": {
+                "rmse": 0.0815484868806172,
+                "mae": 0.051536254004082536,
+                "r2": 0.9793389212033091,
+                "score": -0.0815484868806172
+            }
+        },
+        "trial_id": 51,
+        "tuning_time": "0:19:38"
+    },
+    "time": "0:44:32",
+    "n_completed_trials": 200
+}
