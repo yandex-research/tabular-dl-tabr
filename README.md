@@ -1,6 +1,6 @@
 # TabR: Unlocking the Power of Retrieval-Augmented Tabular Deep Learning<!-- omit in toc -->
 
-This is the official implementation of the paper "TabR: Unlocking the Power of Retrieval-Augmented Tabular Deep Learning" (arXiv: TODO).
+This is the official implementation of the paper "TabR: Unlocking the Power of Retrieval-Augmented Tabular Deep Learning" ([arXiv](https://arxiv.org/abs/2307.14338)).
 
 Table of Contents:
 - [The main results](#the-main-results)
@@ -310,6 +310,6 @@ So adding a new task type will require carefully reviewing the whole codebases t
         Artem Babenko
     },
     journal={arXiv},
-    volume={TODO},
+    volume={2307.14338},
     year={2023},
 }
