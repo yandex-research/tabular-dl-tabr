@@ -299,6 +299,8 @@ For example, there may be places where the code implicitly assumes that the task
 So adding a new task type will require carefully reviewing the whole codebases to find places where the new task type should be taken into account.
 
 # How to cite<!-- omit in toc -->
+
+```
 @article{gorishniy2023tabr,
     title={TabR: Unlocking the Power of Retrieval-Augmented Tabular Deep Learning},
     author={
@@ -313,3 +315,4 @@ So adding a new task type will require carefully reviewing the whole codebases t
     volume={2307.14338},
     year={2023},
 }
+```
