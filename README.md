@@ -178,7 +178,7 @@ Read this if you are going to do more experiments/research in this repository.
 ## Code overview
 - `bin` contains high-level scripts which produce the main results
     - Models
-        - `tabr.py` is the "main" implemention of TabR with many useful technical comments inside
+        - `tabr.py` is the "main" implementation of TabR with many useful technical comments inside
         - `tabr_scaling.py` is the version of `tabr.py` with the support for the "context freeze" technique described in the paper
         - `tabr_design.py` is the version of `tabr.py` with more options for testing various design decisions and doing ablation studies
         - `tabr_add_candidates_after_training.py` is the version of `tabr.py` for evaluating the addition of new unseen candidates after the training as described in the paper
@@ -196,7 +196,7 @@ Read this if you are going to do more experiments/research in this repository.
         - `tune.py` tunes hyperparameters
         - `evaluate.py` evaluates a given config over multiple (by default, 15) random seeds
         - `ensemble.py` ensembles predictions produced by `evaluate.py`
-        - `go.py` is a shorcut combining `[tune.py + evaluate.py + ensemble.py]`
+        - `go.py` is a shortcut combining `[tune.py + evaluate.py + ensemble.py]`
 - `notebooks` contains Jupyter notebooks
 - `lib` contains common tools used by the scripts in `bin` and the notebooks in `notebooks`
 - `exp` contains experiment configs and results (metrics, tuned configurations, etc.)
@@ -232,7 +232,7 @@ The following scripts have command line interface instead of configs:
     - For regression problems, always set `y_policy = "standard"` unless you are absolutely sure that you need other value
     - Unless a given deep learning algorithm is special in some way, for a given dataset, the `data` section should be copied from the MLP config for the same dataset. For example, for California Housing dataset, this "source of truth" for deep learning algorithms is the `exp/mlp/california/0-tuning.toml` config.
 - **(IMPORTANT)** For deep learning algorithms, for each dataset, the batch size is predefined. As in the previous bullet, the configs for MLP is the source of truth.
-- For saving and loading configs programatically, use the `lib.dump_config` and `lib.load_config` functions (defined in `lib/util.py`) instead of bare TOML libraries.
+- For saving and loading configs programmatically, use the `lib.dump_config` and `lib.load_config` functions (defined in `lib/util.py`) instead of bare TOML libraries.
 - In many configs, you can see that path-like values (e.g. a path to a dataset) start with ":". It means "relative to the repository root", and this is handled by the `lib.get_path` function (defined in `lib/env.py`).
 - The scripts in `bin` can be used as modules if needed: `import bin.ffn`. For example, this is used by `bin/evaluate.py` and `bin/tune.py`.
 
