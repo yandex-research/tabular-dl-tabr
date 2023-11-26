@@ -114,7 +114,7 @@ Note that `bin/go.py` is just a shortcut and the above commands are equivalent t
 ```
 cp exp/mlp/california/0-tuning.toml exp/mlp/california/0-reproduce-tuning.toml
 python bin/tune.py exp/mlp/california/0-reproduce-tuning.toml
-python bin/evaluate.py exp/mlp/california/0-reproduce-tuning --function bin.ffn.main
+python bin/evaluate.py exp/mlp/california/0-reproduce-tuning
 python bin/ensemble.py exp/mlp/california/0-reproduce-evaluation
 ```
 
