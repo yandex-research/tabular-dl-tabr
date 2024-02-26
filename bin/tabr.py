@@ -196,6 +196,7 @@ class Model(nn.Module):
         y: Optional[Tensor],
         candidate_x_: dict[str, Tensor],
         candidate_y: Tensor,
+        batch_idx: Tensor,
         context_size: int,
         is_train: bool,
     ) -> Tensor:
@@ -233,13 +234,7 @@ class Model(nn.Module):
             )
         x, k = self._encode(x_)
         if is_train:
-            # NOTE: here, we add the training batch back to the candidates after the
-            # function `apply_model` removed them. The further code relies
-            # on the fact that the first batch_size candidates come from the
-            # training batch.
             assert y is not None
-            candidate_k = torch.cat([k, candidate_k])
-            candidate_y = torch.cat([y, candidate_y])
         else:
             assert y is None
 
@@ -266,11 +261,8 @@ class Model(nn.Module):
                 k, context_size + (1 if is_train else 0)
             )
             if is_train:
-                # NOTE: to avoid leakage, the index i must be removed from the i-th row,
-                # (because of how candidate_k is constructed).
-                distances[
-                    context_idx == torch.arange(batch_size, device=device)[:, None]
-                ] = torch.inf
+                # NOTE: to avoid leakage, batch_idx[i] must be removed from the i-th row
+                distances[context_idx == batch_idx[:, None]] = torch.inf
                 # Not the most elegant solution to remove the argmax, but anyway.
                 context_idx = context_idx.gather(-1, distances.argsort()[:, :-1])
 
@@ -399,25 +391,14 @@ def main(
 
     def apply_model(part: str, idx: Tensor, training: bool):
         x, y = get_Xy(part, idx)
-
-        candidate_indices = train_indices
         is_train = part == 'train'
-        if is_train:
-            # NOTE: here, the training batch is removed from the candidates.
-            # It will be added back inside the model's forward pass.
-            candidate_indices = candidate_indices[~torch.isin(candidate_indices, idx)]
-        candidate_x, candidate_y = get_Xy(
-            'train',
-            # This condition is here for historical reasons, it could be just
-            # the unconditional `candidate_indices`.
-            None if candidate_indices is train_indices else candidate_indices,
-        )
-
+        candidate_x, candidate_y = get_Xy('train', None)
         return model(
             x_=x,
             y=y if is_train else None,
             candidate_x_=candidate_x,
             candidate_y=candidate_y,
+            batch_idx=idx,
             context_size=C.context_size,
             is_train=is_train,
         ).squeeze(-1)
