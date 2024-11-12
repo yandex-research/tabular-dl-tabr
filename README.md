@@ -1,7 +1,7 @@
 # TabR: Unlocking the Power of Retrieval-Augmented Tabular Deep Learning<!-- omit in toc -->
 
 > [!IMPORTANT]
-> Check out the new tabular DL model: [TabM](https://arxiv.org/abs/2410.24210)
+> Check out the new tabular DL model: [TabM](https://github.com/yandex-research/tabm)
 
 This is the official implementation of the paper "TabR: Unlocking the Power of Retrieval-Augmented Tabular Deep Learning" ([arXiv](https://arxiv.org/abs/2307.14338)).
 
