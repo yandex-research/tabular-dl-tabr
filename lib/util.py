@@ -192,7 +192,7 @@ def create_report(config: JSONDict) -> JSONDict:
         caller_relative_path = env.get_path(caller_frame.filename).relative_to(
             env.PROJECT_DIR
         )
-        caller_module = str(caller_relative_path.with_suffix('')).replace('/', '.')
+        caller_module = str(caller_relative_path.with_suffix('')).replace(os.sep, '.')
         caller_function_qualname = f'{caller_module}.{caller_frame.function}'
         import_(caller_function_qualname)
         report['function'] = caller_function_qualname
