@@ -1,5 +1,6 @@
 import math
 import statistics
+import warnings
 from functools import partial
 from typing import Any, Callable, Optional, Union, cast
 
@@ -330,6 +331,9 @@ def default_zero_weight_decay_condition(
     )
 
 
+_MAKE_PARAMETER_GROUPS_WARNING_RAISED = False
+
+
 def make_parameter_groups(
     model: nn.Module,
     zero_weight_decay_condition,
@@ -361,6 +365,22 @@ def make_parameter_groups(
                 group['params'].append(parameter)
                 break
         else:
+            global _MAKE_PARAMETER_GROUPS_WARNING_RAISED
+
+            if _MAKE_PARAMETER_GROUPS_WARNING_RAISED:
+                warnings.warn(
+                    'The function `lib.deep.make_parameter_groups` contains a minor'
+                    ' bug, which affects how weight decay is applied. See the comment'
+                    ' in the source code for details'
+                )
+                _MAKE_PARAMETER_GROUPS_WARNING_RAISED = True
+            # NOTE
+            # The line below always appends to `params_with_wd` regardless of
+            # `needs_wd`. This is a bug: the `else` branch should append to
+            # `params_without_wd` instead. However, this bug is not fixed
+            # to keep the results compatible with what is reported in the paper.
+            # The bug was originally reported here:
+            # https://github.com/yandex-research/tabular-dl-tabr/issues/19
             (params_with_wd if needs_wd else params_with_wd)['params'].append(parameter)
     assert (
         not custom_fullnames
